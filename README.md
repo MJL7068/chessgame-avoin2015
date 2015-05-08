@@ -1,2 +1,2 @@
 # chessgame-avoin2015
-Muokatti
+Tämä ohjelma on osa Ohjelmoinnin harjoitustyö-projektia.

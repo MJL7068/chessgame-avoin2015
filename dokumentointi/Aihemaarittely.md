@@ -1,4 +1,4 @@
-##Aihemäärittely**
+##Aihemäärittely
 
 Tämän työn tavoitteena on ohjelmoida shakkipeli. Siinä ei ole tekoälyä, vaan sitä on pelattava kahden pelaajan voimin saman tietokoneen ääressä.
 

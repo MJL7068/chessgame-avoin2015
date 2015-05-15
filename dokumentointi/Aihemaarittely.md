@@ -9,4 +9,5 @@ Alustavana tavoitteena on saada aikaan toimiva ohjelma, jossa nappuloiden siirto
 **Käyttäjät:** shakin ystävät.
 
 **Käyttäjän toiminnot:**
+- nimimerkin kirjoittaminen pelin alussa
 - nappuloiden siirtäminen

@@ -1,5 +1,5 @@
 
-package com.chessgame.chessgame;
+package chessgame;
 
 public class ChessGame {
 

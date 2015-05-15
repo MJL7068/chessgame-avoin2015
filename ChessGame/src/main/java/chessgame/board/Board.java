@@ -1,5 +1,5 @@
-package com.chessgame.chessgame.board;
-import com.chessgame.chessgame.pieces.*;
+package chessgame.board;
+import chessgame.pieces.Piece;
 import java.util.ArrayList;
 
 public class Board {

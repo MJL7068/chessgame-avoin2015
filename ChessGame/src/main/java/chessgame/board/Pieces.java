@@ -1,6 +1,7 @@
-package com.chessgame.chessgame.board;
+package chessgame.board;
 
-import com.chessgame.chessgame.pieces.*;
+import chessgame.pieces.Piece;
+import chessgame.pieces.Rook;
 import java.util.ArrayList;
 
 public class Pieces {

@@ -1,4 +1,4 @@
-package com.chessgame.chessgame.pieces;
+package chessgame.pieces;
 
 public abstract class Piece {
     private static final String[] columns = {"A", "B", "C", "D", "E", "F", "G", "H"};

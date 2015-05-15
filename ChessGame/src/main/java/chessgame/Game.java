@@ -1,6 +1,6 @@
-package com.chessgame.chessgame;
+package chessgame;
 
-import com.chessgame.chessgame.board.Board;
+import chessgame.board.Board;
 import java.util.Scanner;
 
 public class Game {

@@ -1,4 +1,4 @@
-package com.chessgame.chessgame.pieces;
+package chessgame.pieces;
 
 public class Rook extends Piece {
     

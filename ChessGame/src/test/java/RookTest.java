@@ -32,13 +32,19 @@ public class RookTest {
     
     @Test
     public void constructorSetsVariablesCorrectly() {
-        assertEquals("A1", rook.getLocation());
+        assertEquals("Rook: A1", rook.toString());
     }
     
     @Test
     public void moveWorksCorrectly() {
         rook.move("D1");
-        assertEquals("Rook, D1", rook.toString());
+        assertEquals("Rook: D1", rook.toString());
+    }
+    
+    @Test
+    public void getLocationWorksCorrectly() {
+        rook.move("A7");
+        assertEquals("A7", rook.getLocation());
     }
 
     // TODO add test methods here.

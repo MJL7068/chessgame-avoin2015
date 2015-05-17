@@ -1,3 +1,4 @@
+import chessgame.board.Board;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -6,24 +7,14 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class BoardTest {
+    Board board;
     
     public BoardTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
+        board = new Board();
     }
 
     // TODO add test methods here.

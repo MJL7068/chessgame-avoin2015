@@ -20,6 +20,7 @@ public class Board {
             System.out.println("There is no piece there!");
             return;
         }
+        
         movable.move(newPlace);
         System.out.println("new place: " + movable);
     }

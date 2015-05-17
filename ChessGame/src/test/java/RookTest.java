@@ -13,21 +13,9 @@ public class RookTest {
     public RookTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         rook = new Rook(1, 1);
-    }
-    
-    @After
-    public void tearDown() {
     }
     
     @Test
@@ -46,10 +34,10 @@ public class RookTest {
         rook.move("A7");
         assertEquals("A7", rook.getLocation());
     }
+    
+    @Test
+    public void toStringWorksCorrectly() {
+        assertEquals("Rook: " + rook.getLocation(), rook.toString());
+    }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
 }

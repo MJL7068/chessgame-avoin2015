@@ -20,20 +20,33 @@ public abstract class Piece {
         }
         newRow = Integer.parseInt("" + newPlace.charAt(1));
         
-        setX(newColumn);
-        setY(newRow);
+        setColumn(newColumn);
+        setRow(newRow);
     }
     
     public String getLocation() {
         return columns[column - 1] + row;
     }
 
-    public void setX(int x) {
+    private void setColumn(int x) {
         this.column = x;
     }
 
-    public void setY(int y) {
+    private void setRow(int y) {
         this.row = y;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+    public int getRow() {
+        return row;
+    }    
+    
+    public String returnClass() {
+        String role = "" + this.getClass();
+        return role;
     }
     
     abstract void isValidMove();

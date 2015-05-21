@@ -1,3 +1,5 @@
+package chessgame.board;
+
 import chessgame.board.Board;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,9 +19,4 @@ public class BoardTest {
         board = new Board();
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
 }

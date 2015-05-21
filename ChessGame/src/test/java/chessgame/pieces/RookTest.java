@@ -1,3 +1,5 @@
+package chessgame.pieces;
+
 
 import chessgame.pieces.Rook;
 import org.junit.After;

@@ -1,3 +1,5 @@
+package chessgame.pieces;
+
 import chessgame.pieces.*;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -10,14 +12,6 @@ public class PieceTest {
     Piece piece;
     
     public PieceTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
     }
     
     @Before

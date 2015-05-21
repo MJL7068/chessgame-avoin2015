@@ -15,3 +15,6 @@ n. 15min, kirjoitin alustavan aihemäärittelyn.
 17.5.2015
 n. 15 min, piirsin määrittelyvaiheen luokkakaavion.
 40 min, tein muillekin nappuloille omat luokat ja tein lisää testejä.
+
+21.5.2015
+1 tunti, kirjoitin lisää testejä.

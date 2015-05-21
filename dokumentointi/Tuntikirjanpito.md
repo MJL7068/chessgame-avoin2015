@@ -17,4 +17,4 @@ n. 15 min, piirsin määrittelyvaiheen luokkakaavion.
 40 min, tein muillekin nappuloille omat luokat ja tein lisää testejä.
 
 21.5.2015
-1 tunti, kirjoitin lisää testejä.
+1 tunti, kirjoitin lisää testejä ja tein pit-kansion.

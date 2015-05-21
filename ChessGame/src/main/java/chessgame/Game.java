@@ -12,7 +12,9 @@ public class Game {
     
     public void start() {       
         while (true) {
+            System.out.println("\nMovable pieces:");
             board.printPieces();
+            System.out.println("");
             round();
         }
     }

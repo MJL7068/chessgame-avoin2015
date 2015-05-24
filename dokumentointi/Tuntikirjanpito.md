@@ -18,3 +18,6 @@ n. 15 min, piirsin määrittelyvaiheen luokkakaavion.
 
 21.5.2015
 1 tunti, kirjoitin lisää testejä ja tein pit-kansion.
+
+24.5.2015
+n. 2,5 tuntia, aloitin tekemääm graafista käyttöliittymää.

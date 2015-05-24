@@ -3,11 +3,13 @@ package chessgame.pieces;
 public abstract class Piece {
     private static final String[] columns = {"A", "B", "C", "D", "E", "F", "G", "H"};
     private int column;
-    private int row;        
+    private int row;
+    private String color;
     
-    public Piece(int x, int y) {
+    public Piece(int x, int y, String color) {
         this.column = x;
         this.row = y;
+        this.color = color;
     }
     
     public void move(String newPlace) {
@@ -52,6 +54,6 @@ public abstract class Piece {
     abstract void isValidMove();
     
     public String toString() {
-        return getLocation();
+        return color + ": " + getLocation();
     }
 }

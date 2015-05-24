@@ -11,33 +11,44 @@ public class Pieces {
     public Pieces() {
         this.pieces = new ArrayList<Piece>();
         
-        generatePieces();
+        generatePieces("white");
+        generatePieces("black");
     }
 
-    void generatePieces() {
-        Rook rookOne = new Rook(1, 1);
+    public void generatePieces(String color) {
+        int firstRow = 0, secondRow = 0;
+        
+        if (color.equals("white")) {
+            firstRow = 1;
+            secondRow = 2;
+        } else if (color.equals("black")) {
+            firstRow = 8;
+            secondRow = 7;
+        }
+        
+        Rook rookOne = new Rook(1, firstRow, color);
         pieces.add(rookOne);
-        Rook rookTwo = new Rook(8, 1);
+        Rook rookTwo = new Rook(8, firstRow, color);
         pieces.add(rookTwo);
         
-        Knight knightOne = new Knight(2, 1);
+        Knight knightOne = new Knight(2, firstRow, color);
         pieces.add(knightOne);
-        Knight knightTwo = new Knight(7, 1);
+        Knight knightTwo = new Knight(7, firstRow, color);
         pieces.add(knightTwo);
         
-        Bishop bishopOne = new Bishop(3, 1);
+        Bishop bishopOne = new Bishop(3, firstRow, color);
         pieces.add(bishopOne);
-        Bishop bishopTwo = new Bishop(6, 1);
+        Bishop bishopTwo = new Bishop(6, firstRow, color);
         pieces.add(bishopTwo);
         
-        Queen queen = new Queen(4, 1);
+        Queen queen = new Queen(4, firstRow, color);
         pieces.add(queen);
         
-        King king = new King(5, 1);
+        King king = new King(5, firstRow, color);
         pieces.add(king);
         
         for (int i = 1; i <= 8; i++) {
-            Pawn pawn = new Pawn(i, 2);
+            Pawn pawn = new Pawn(i, secondRow, color);
             pieces.add(pawn);
         }
 

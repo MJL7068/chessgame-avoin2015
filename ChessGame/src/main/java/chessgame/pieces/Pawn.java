@@ -2,8 +2,8 @@ package chessgame.pieces;
 
 public class Pawn extends Piece {
     
-    public Pawn(int column, int row) {
-        super(column, row);
+    public Pawn(int column, int row, String color) {
+        super(column, row, color);
     }
 
     @Override
@@ -12,7 +12,7 @@ public class Pawn extends Piece {
     }
     
     public String toString() {
-        return "Pawn: " + super.toString();
+        return "Pawn, " + super.toString();
     }
     
 }

@@ -2,8 +2,8 @@ package chessgame.pieces;
 
 public class Knight extends Piece {
     
-    public Knight(int column, int row) {
-        super(column, row);
+    public Knight(int column, int row, String color) {
+        super(column, row, color);
     }
 
     @Override
@@ -12,7 +12,7 @@ public class Knight extends Piece {
     }
     
     public String toString() {
-        return "Knight: " + super.toString();
+        return "Knight, " + super.toString();
     }
     
 }

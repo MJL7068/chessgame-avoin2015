@@ -16,7 +16,7 @@ public class PieceTest {
     
     @Before
     public void setUp() {
-        piece = new Pawn(1, 2);
+        piece = new Pawn(1, 2, "white");
     }
     
     @Test

@@ -51,7 +51,7 @@ public abstract class Piece {
         return role;
     }
     
-    abstract void isValidMove();
+    public abstract boolean isValidMove();
     
     public String toString() {
         return color + ": " + getLocation();

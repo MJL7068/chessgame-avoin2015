@@ -17,18 +17,18 @@ public class RookTest {
     
     @Before
     public void setUp() {
-        rook = new Rook(1, 1);
+        rook = new Rook(1, 1, "white");
     }
     
     @Test
     public void constructorSetsVariablesCorrectly() {
-        assertEquals("Rook: A1", rook.toString());
+        assertEquals("Rook, white: A1", rook.toString());
     }
     
     @Test
     public void moveWorksCorrectly() {
         rook.move("D1");
-        assertEquals("Rook: D1", rook.toString());
+        assertEquals("Rook, white: D1", rook.toString());
     }
     
     @Test
@@ -39,7 +39,7 @@ public class RookTest {
     
     @Test
     public void toStringWorksCorrectly() {
-        assertEquals("Rook: " + rook.getLocation(), rook.toString());
+        assertEquals("Rook, white: " + rook.getLocation(), rook.toString());
     }
 
 }

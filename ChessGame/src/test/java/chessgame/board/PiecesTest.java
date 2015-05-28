@@ -116,4 +116,21 @@ public class PiecesTest {
         Piece rightBishop = pieces.getPiece(("F8"));
         assertEquals("Bishop, black: F8", rightBishop.toString());
     }
+    
+    @Test
+    public void removePieceWorksCorrectly() {
+        pieces.removePiece("A2");
+        
+        assertEquals(null, pieces.getPiece("A2"));
+    }
+    
+    @Test
+    public void moveWorksCorrectly() {
+        pieces.move("D2", "D7");       
+        assertEquals("Pawn, white: D7", pieces.getPiece("D7").toString());
+        
+        pieces.move("D7", "D5");
+        assertEquals("Pawn, white: D5", pieces.getPiece("D5").toString());        
+    }
+        
 }

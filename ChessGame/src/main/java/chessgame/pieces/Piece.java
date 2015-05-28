@@ -1,4 +1,5 @@
 package chessgame.pieces;
+import javax.swing.ImageIcon;
 
 public abstract class Piece {
     private static final String[] columns = {"A", "B", "C", "D", "E", "F", "G", "H"};
@@ -51,7 +52,12 @@ public abstract class Piece {
         return role;
     }
     
+    public String getColor() {
+        return color;
+    }
+    
     public abstract boolean isValidMove();
+    public abstract ImageIcon getImage();
     
     public String toString() {
         return color + ": " + getLocation();

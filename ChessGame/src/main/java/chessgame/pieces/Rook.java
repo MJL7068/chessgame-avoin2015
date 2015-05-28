@@ -1,4 +1,5 @@
 package chessgame.pieces;
+import javax.swing.ImageIcon;
 
 public class Rook extends Piece {
     
@@ -9,6 +10,11 @@ public class Rook extends Piece {
     @Override
     public boolean isValidMove() {
         return true;
+    }
+    
+    @Override
+    public ImageIcon getImage() {
+        return null;
     }
     
     public String toString() {

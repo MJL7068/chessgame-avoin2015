@@ -106,8 +106,8 @@ public class Pieces {
     }
     
     public void printPieces() {
-//        for (Piece piece : pieces.values()) {
-//            System.out.println(piece);
-//        }
+        for (Piece piece : pieces.values()) {
+            System.out.println(piece);
+        }
     }
 }

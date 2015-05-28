@@ -1,5 +1,7 @@
 package chessgame.pieces;
 
+import javax.swing.ImageIcon;
+
 public class Queen extends Piece {
     
     public Queen(int column, int row, String color) {
@@ -9,6 +11,11 @@ public class Queen extends Piece {
     @Override
     public boolean isValidMove() {
         return true;
+    }
+    
+    @Override
+    public ImageIcon getImage() {
+        return null;
     }
     
     public String toString() {

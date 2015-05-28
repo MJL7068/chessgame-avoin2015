@@ -40,17 +40,7 @@ public class Board {
         return true;
     }
 
-    public void turn(String oldPlace, String newPlace) {
-        Piece movable = pieces.getPiece(oldPlace);
-
-        if (move(oldPlace, newPlace)) {
-            pieces.move(oldPlace, newPlace);
-            System.out.println("new place: " + movable);
-            gui.updateTable();
-        }
-    }
-
-    private boolean lookForPiece(String id) {
+    public boolean lookForPiece(String id) {
         Piece piece = pieces.getPiece(id);
         if (piece == null) {
             System.out.println("There is no piece there!");
@@ -88,6 +78,10 @@ public class Board {
 
     public boolean getTurnState() {
         return turnState;
+    }
+
+    public String getStartingPoint() {
+        return startingPoint;
     }
 
     public void printPieces() {

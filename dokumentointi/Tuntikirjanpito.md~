@@ -24,3 +24,6 @@ n. 2,5 tuntia, aloitin tekemääm graafista käyttöliittymää.
 
 27.5.2015
 n. 2,5 tuntia, muokkasin käyttöliittymää ja kirjoitin lisää testejä.
+
+28.5.2015
+n. 3 tuntia, muokkasin käyttöliittymää. Nyt nappuloita voi liikuttaa klikkailemalla niitä.

@@ -21,3 +21,6 @@ n. 15 min, piirsin määrittelyvaiheen luokkakaavion.
 
 24.5.2015
 n. 2,5 tuntia, aloitin tekemääm graafista käyttöliittymää.
+
+27.5.2015
+n. 2,5 tuntia, muokkasin käyttöliittymää ja kirjoitin lisää testejä.

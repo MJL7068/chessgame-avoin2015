@@ -37,4 +37,24 @@ public class Square {
     public JPanel getSquare() {
         return square;
     }
+
+    public String getId() {
+        return id;
+    }
+    
+    public void paintBackground(Color color) {        
+        this.square.setBackground(color);
+    }
+
+    public void clearBackground() {
+        this.square.setBackground(color);
+    }
+
+    public void setButton(JButton button) {
+        this.button = button;
+    }
+
+    public JButton getButton() {
+        return button;
+    }
 }

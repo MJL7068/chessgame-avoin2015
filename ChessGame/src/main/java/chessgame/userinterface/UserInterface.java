@@ -5,9 +5,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,6 +20,9 @@ public class UserInterface implements Runnable {
     private Color dark;
     private Color light;
     
+    private ChessBoard chessBoard;
+    private JLabel upperPanel;
+    private JLabel lowerPanel;
     private ArrayList<Square> squares;
 
     public UserInterface(Board board) {
@@ -54,59 +54,94 @@ public class UserInterface implements Runnable {
         JPanel gameBoard = new JPanel(new BorderLayout());
 
         gameBoard.add(createChessBoard());
+        gameBoard.add(createUpperPanel(), BorderLayout.NORTH);
         gameBoard.add(createLowerPanel(), BorderLayout.SOUTH);
 
         return gameBoard;
     }
 
     private JPanel createChessBoard() {
-        JPanel chessBoard = new JPanel(new GridLayout(8, 8));
+        ChessBoard chessBoard = new ChessBoard(board);
 
-        final String[] columns = new String[]{"A", "B", "C", "D", "E", "F", "G", "H"};
-        Color color = null;
-        for (int y = 8; y >= 1; y--) {
-            for (int x = 1; x <= 8; x++) {
-                
-                if (y % 2 == 0 && x % 2 == 0 || y % 2 != 0 && x % 2 != 0) {
-                    color = dark;
-                }
+        this.chessBoard = chessBoard;
 
-                if (y % 2 == 0 && x % 2 != 0 || y % 2 != 0 && x % 2 == 0) {
-                    color = light;
-                }
+        return chessBoard.getChessBoard();
+    }
+    
+    public JPanel createUpperPanel() {
+        JPanel upperPanel = new JPanel();
+        JLabel turn = new JLabel("    Turn: " + board.getTurns());
+        upperPanel.add(turn);
 
-                String id = columns[x - 1] + y;
+        this.upperPanel = turn;
 
-                Square newSquare = new Square(id, board, color);
-                squares.add(newSquare);
-                JPanel square = newSquare.getSquare();
-
-                chessBoard.add(square);
-            }
-        }
-
-        return chessBoard;
+//        if (board.getTurns() % 2 == 0) {
+//            upperPanel.setBackground(Color.black);
+//        } else {
+//            upperPanel.setBackground(Color.white);
+//        }
+        return upperPanel;
     }
     
     public JPanel createLowerPanel() {
+//        JPanel lowerPanel = new JPanel();
+        
+//        JButton reset = new JButton("Reset");
+//        reset.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                board.reset();
+//            }
+//        });
+//        
+//        lowerPanel.add(reset);
         JPanel lowerPanel = new JPanel();
-        
-        JButton reset = new JButton("Reset");
-        reset.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                board.reset();
-            }
-        });
-        
-        lowerPanel.add(reset);
+        JLabel message = new JLabel("Message: " + board.getNotification());
+        lowerPanel.add(message);
+
+        this.lowerPanel = message;
         return lowerPanel;
     }
 
     public void updateTable() {
-        frame.setContentPane(drawBoard());
-        frame.validate();
-        frame.repaint();
+//        frame.setContentPane(drawBoard());
+//        frame.validate();
+//        frame.repaint();
+
+        updateChessBoard();
+        updateLowerPanel();
+        updateUpperPanel();
+    }
+
+    public void updateUpperPanel() {
+        upperPanel.setText("    Turn: " + board.getTurns());
+    }
+
+    public void updateLowerPanel() {
+        lowerPanel.setText("Message: " + board.getNotification());
+    }
+
+    public void updateChessBoard() {
+        ArrayList<Square> squares = chessBoard.getSquares();
+        for (Square square : squares) {
+            updateSquare(square.getId());
+        }
+    }
+    
+    public void updateSquare(String id) {
+        Square square = chessBoard.getSquare(id);
+        
+        JButton button = square.getButton();
+            square.clearBackground();
+            if (board.getPiece(square.getId()) == null) {
+                button.setText(id);
+            } else {
+                button.setText(board.getPiece(square.getId()).toString());
+            }
+            
+            if (square.getId().equals(board.getStartingPoint())) {
+                square.paintBackground(Color.white);
+            }
     }
 
 }

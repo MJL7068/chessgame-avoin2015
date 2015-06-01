@@ -94,12 +94,12 @@ public class Pieces {
             return;
         }
         
-//        if (location.equals(getKing("white").getLocation())) {
-//            whiteKing = null;
-//        }
-//        if (location.equals(getKing("black").getLocation())) {
-//            blackKing = null;
-//        }
+        if (location.equals(getKing("white").getLocation())) {
+            whiteKing = null;
+        }
+        if (location.equals(getKing("black").getLocation())) {
+            blackKing = null;
+        }
         
         System.out.println("Piece " + pieces.get(location) + " removed!");
         pieces.remove(location);   

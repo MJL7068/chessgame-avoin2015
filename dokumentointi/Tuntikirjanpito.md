@@ -30,3 +30,6 @@ n. 3 tuntia, muokkasin käyttöliittymää. Nyt nappuloita voi liikuttaa klikkai
 
 28.5.2015
 n. 2 tuntia, lisää ohjelmointia ja lisää testejä.
+
+1.6.2015
+n. 5 tuntia. Jaoin graafisen käyttöliittymän komponentit, shakkilaudan ja siihen kuuluvat ruudut, omiin luokkiinsa. Lisäksi muokkasin toiminnallisuutta siten, että ohjelman saadessa komennon siirtää nappulaa laudalla, se hakee vain sen ruudun, mihin nappula on siirtynyt, ja sen ruudun mistä se on siirtynyt ja päivittää ne.

@@ -17,7 +17,7 @@ public class Pieces {
         this.blackKing = null;
         
         generatePieces("white");
-        generatePieces("black");
+        generatePieces("black");        
     }
 
     public void generatePieces(String color) {

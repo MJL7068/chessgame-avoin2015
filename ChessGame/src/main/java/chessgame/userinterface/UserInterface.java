@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.HashSet;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -104,10 +105,6 @@ public class UserInterface implements Runnable {
     }
 
     public void updateTable() {
-//        frame.setContentPane(drawBoard());
-//        frame.validate();
-//        frame.repaint();
-
         updateChessBoard();
         updateLowerPanel();
         updateUpperPanel();
@@ -134,7 +131,7 @@ public class UserInterface implements Runnable {
         JButton button = square.getButton();
             square.clearBackground();
             if (board.getPiece(square.getId()) == null) {
-                button.setText(id);
+                button.setText("");
             } else {
                 button.setText(board.getPiece(square.getId()).toString());
             }
@@ -143,5 +140,14 @@ public class UserInterface implements Runnable {
                 square.paintBackground(Color.white);
             }
     }
+
+    public void paintMovableSquares(HashSet<String> squares) {
+        for (String squareId : squares) {
+            Square square = chessBoard.getSquare(squareId);
+            if (square != null) {
+            square.paintBackground(Color.LIGHT_GRAY);
+            }
+        }
+    }    
 
 }

@@ -38,7 +38,7 @@ public class Board {
             return false;
         }
 
-        if (!pieces.getPiece(oldPlace).isValidMove()) {
+        if (!pieces.getPiece(oldPlace).isValidMove(newPlace, pieces)) {
             System.out.println("Not a valid move!");
             return false;
         }
@@ -75,6 +75,7 @@ public class Board {
             turnState = true;
             startingPoint = squareId;
             notification = "move where?";
+            gui.paintMovableSquares(pieces.getPiece(squareId).returnPossibleSquares(pieces));
         }
 //        updateGui();
         gui.updateSquare(squareId);
@@ -89,13 +90,12 @@ public class Board {
         }
 
         turnState = false;
-        String startPoint = startingPoint;
+//        String startPoint = startingPoint;
         startingPoint = "";
 
-        gui.updateSquare(startPoint);
-        gui.updateSquare(squareId);
-        gui.updateUpperPanel();
-        gui.updateLowerPanel();
+//        gui.updateSquare(startPoint);
+//        gui.updateSquare(squareId);
+        gui.updateTable();        
     }
 
     public void setInterface(UserInterface gui) {

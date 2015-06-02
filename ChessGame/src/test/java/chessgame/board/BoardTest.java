@@ -32,13 +32,13 @@ public class BoardTest {
 //        assertEquals(null, board.getPiece("A4"));
 //    }
     
-    @Test
-    public void turnFirstPartWorksCorrectly() {
-        board.turnFirstPart("D2");
-        
-        assertEquals("D2", board.getStartingPoint());
-        assertEquals(true, board.getTurnState());
-    }
+//    @Test
+//    public void turnFirstPartWorksCorrectly() {
+//        board.turnFirstPart("D2");
+//        
+//        assertEquals("D2", board.getStartingPoint());
+//        assertEquals(true, board.getTurnState());
+//    }
    
 //    @Test
 //    public void turnSecondPartWorksCorrectly() {
@@ -58,6 +58,13 @@ public class BoardTest {
     @Test
     public void lookForPieceReturnsFalseCorrectly() {
         assertTrue(false == board.lookForPiece("D5"));
+    }
+    
+    @Test
+    public void checkForColorWorksCorrectly() {
+        assertTrue(true == board.checkForColor("D2", "white"));
+        
+        assertTrue(false == board.checkForColor("H1", "black"));
     }
     
     @Test

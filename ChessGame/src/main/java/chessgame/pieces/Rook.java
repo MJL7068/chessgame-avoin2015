@@ -1,15 +1,12 @@
 package chessgame.pieces;
+import chessgame.board.Pieces;
+import java.util.HashSet;
 import javax.swing.ImageIcon;
 
 public class Rook extends Piece {
     
     public Rook(int column, int row, String color) {
         super(column, row, color);
-    }
-
-    @Override
-    public boolean isValidMove() {
-        return true;
     }
     
     @Override
@@ -19,6 +16,60 @@ public class Rook extends Piece {
     
     public String toString() {
         return "Rook, " + super.toString();
+    }
+
+    @Override
+    public HashSet<String> returnPossibleSquares(Pieces pieces) {
+        String[] columns = new String[]{"A", "B", "C", "D", "E", "F", "G", "H"};
+        HashSet<String> squares = new HashSet<String>();
+        int column = super.getColumn();
+        int row = super.getRow();        
+        
+        for (int x = column + 1; x <= 8; x++) {
+            String squareId = columns[x - 1] + "" + row;
+            if (pieces.getPiece(squareId) != null) {
+                if (!pieces.getPiece(squareId).getColor().equals(super.getColor())) {
+                    squares.add(squareId);
+                }
+                break;
+            }
+            squares.add(squareId);
+        }
+        
+        for (int x = column - 1; x >= 1; x--) {
+            String squareId = columns[x - 1] + "" + row;
+            if (pieces.getPiece(squareId) != null) {
+                if (!pieces.getPiece(squareId).getColor().equals(super.getColor())) {
+                    squares.add(squareId);
+                }
+                break;
+            }
+            squares.add(squareId);
+        }
+        
+        for (int y = row + 1; y <= 8; y++) {
+            String squareId = columns[column - 1] + "" + y;
+            if (pieces.getPiece(squareId) != null) {
+                if (!pieces.getPiece(squareId).getColor().equals(super.getColor())) {
+                    squares.add(squareId);
+                }
+                break;
+            }
+            squares.add(squareId);
+        }
+        
+        for (int y = row - 1; y >= 1; y--) {
+            String squareId = columns[column - 1] + "" + y;
+            if (pieces.getPiece(squareId) != null) {
+                if (!pieces.getPiece(squareId).getColor().equals(super.getColor())) {
+                    squares.add(squareId);
+                }
+                break;
+            }
+            squares.add(squareId);
+        }
+        
+        return squares;
     }
     
 }

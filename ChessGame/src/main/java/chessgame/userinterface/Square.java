@@ -2,6 +2,7 @@ package chessgame.userinterface;
 import chessgame.board.Board;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -18,11 +19,12 @@ public class Square {
         this.color = color;
         
         square.setBackground(color);
+        square.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         
         this.button = null;
         
         if (board.getPiece(id) == null) {
-            button = new JButton(id);
+            button = new JButton();
         } else {
             button = new JButton(board.getPiece(id).toString());
         }

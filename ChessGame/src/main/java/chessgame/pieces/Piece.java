@@ -1,4 +1,6 @@
 package chessgame.pieces;
+import chessgame.board.Pieces;
+import java.util.HashSet;
 import javax.swing.ImageIcon;
 
 public abstract class Piece {
@@ -47,16 +49,19 @@ public abstract class Piece {
         return row;
     }    
     
-    public String returnClass() {
-        String role = "" + this.getClass();
-        return role;
-    }
-    
     public String getColor() {
         return color;
     }
     
-    public abstract boolean isValidMove();
+    public boolean isValidMove(String newLocation, Pieces pieces) {
+        HashSet<String> possibleMovementOptions = returnPossibleSquares(pieces);
+        if (possibleMovementOptions.contains(newLocation)) {
+            return true;
+        }
+        return false;
+    }
+    
+    public abstract HashSet<String> returnPossibleSquares(Pieces pieces);
     public abstract ImageIcon getImage();
     
     public String toString() {

@@ -8,21 +8,21 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class RookTest {
-    Rook rook;
     Pieces pieces;
     
     public RookTest() {
     }
     
     @Before
-    public void setUp() {
-        rook = new Rook(4, 4, "white");
+    public void setUp() {        
         pieces = new Pieces();
+        
+        pieces.move("A1", "D4");
     }
     
     @Test
-    public void constructorSetsVariablesCorrectly() {
-        assertEquals("Rook, white: D4", rook.toString());
+    public void rookExists() {
+        assertEquals("Rook, white: D4", pieces.getPiece("D4").toString());
     }
 //    
 //    @Test
@@ -44,22 +44,22 @@ public class RookTest {
     
     @Test
     public void rookCanMoveUp() {        
-        assertTrue(true == rook.returnPossibleSquares(pieces).contains("D6"));
+        assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("D6"));
     }
     
     @Test
     public void rookCanMoveDown() {
-        assertTrue(true == rook.returnPossibleSquares(pieces).contains("D3"));
+        assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("D3"));
     }
     
     @Test
     public void rookCanMoveLeft() {
-        assertTrue(true == rook.returnPossibleSquares(pieces).contains("A4"));
+        assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("A4"));
     }
     
     @Test
     public void rookCanMoveRight() {
-        assertTrue(true == rook.returnPossibleSquares(pieces).contains("H4"));
-    }
+        assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("H4"));
+    }   
 
 }

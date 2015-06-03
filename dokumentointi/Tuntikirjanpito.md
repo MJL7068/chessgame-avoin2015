@@ -36,3 +36,6 @@ n. 5 tuntia. Jaoin graafisen käyttöliittymän komponentit, shakkilaudan ja sii
 
 2.6 2015
 6 tuntia. Jokainen Piece-yläluokan perivä luokka toteuttaa metodin returnPossibleSquares(), joka palauttaa listan ruuduista, joihin kyseinen nappula pystyy siirtymään ottaen huomioon muiden nappuloiden sijainnin siihen nähden. Klikattaessa nappulaa käyttöliittymällä, maalautuvat ne ruudut, joihin nappula pystyy siirtymään. Kun klikataan nappulan määränpää, onnistuu siirto vain jos uusi ruutu on yksi niistä ruuduista, jotka metodi returnPossibleSquares() on palauttanut. Siirron jälkeen käyttöliittymä päivittyy. Lisäksi aloitin uusien testien kirjoittamisen.
+
+3.6 2015
+n. 2 tuntia. Kirjoitin testejä Piece-yläluokan alaluokille.

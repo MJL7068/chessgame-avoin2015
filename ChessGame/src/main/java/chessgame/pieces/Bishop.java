@@ -22,7 +22,13 @@ public class Bishop extends Piece {
 
     @Override
     public ImageIcon getImage() {
-        return null;
+        ImageIcon image;
+        if (this.getColor().equals("white")) {
+            image = new ImageIcon(getClass().getResource("/images/bishopWhite.png"));
+        } else {
+            image = new ImageIcon(getClass().getResource("/images/bishopBlack.png"));
+        }
+        return image;
     }
 
     public String toString() {

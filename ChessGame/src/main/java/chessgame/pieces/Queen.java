@@ -12,7 +12,13 @@ public class Queen extends Piece {
     
     @Override
     public ImageIcon getImage() {
-        return null;
+        ImageIcon image;
+        if (this.getColor().equals("white")) {
+            image = new ImageIcon(getClass().getResource("/images/queenWhite.png"));
+        } else {
+            image = new ImageIcon(getClass().getResource("/images/queenBlack.png"));
+        }
+        return image;
     }
     
     public String toString() {

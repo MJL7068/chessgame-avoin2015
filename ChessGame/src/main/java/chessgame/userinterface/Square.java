@@ -37,7 +37,7 @@ public class Square {
         if (board.getPiece(id) == null) {
             button = new JButton();
         } else {
-            button = new JButton(board.getPiece(id).toString());
+            button = new JButton(board.getPiece(id).getImage());
 //            button = new JButton(board.getPiece(id).getImage());
         }
         
@@ -68,9 +68,9 @@ public class Square {
         JButton button = getButton();
             clearBackground();
             if (board.getPiece(id) == null) {
-                button.setText("");
+                button.setIcon(null);
             } else {
-                button.setText(board.getPiece(id).toString());
+                button.setIcon(board.getPiece(id).getImage());
             }
             
             if (id.equals(board.getStartingPoint())) {

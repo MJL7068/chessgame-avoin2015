@@ -24,16 +24,16 @@ public class BoardTest {
         SwingUtilities.invokeLater(gui);
     }
     
-    @Test
-    public void resetWorksCorrectly() {
-        board.turnFirstPart("A2");
-        board.turnSecondPart("A4");
-        board.turnFirstPart("D2");
-        
-        board.reset();
-        assertEquals("", board.getStartingPoint());
-        assertEquals(null, board.getPiece("A4"));
-    }
+//    @Test
+//    public void resetWorksCorrectly() {
+//        board.turnFirstPart("A2");
+//        board.turnSecondPart("A4");
+//        board.turnFirstPart("D2");
+//        
+//        board.reset();
+//        assertEquals("", board.getStartingPoint());
+//        assertEquals(null, board.getPiece("A4"));
+//    }
     
 //    @Test
 //    public void turnFirstPartWorksCorrectly() {

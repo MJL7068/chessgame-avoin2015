@@ -5,6 +5,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashSet;
 import javax.swing.JButton;
@@ -47,7 +50,7 @@ public class UserInterface implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("Chess");
-        frame.setPreferredSize(new Dimension(1250, 650));
+        frame.setPreferredSize(new Dimension(500, 500));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         createComponents(frame.getContentPane());
@@ -83,7 +86,7 @@ public class UserInterface implements Runnable {
      * @return returns the JPanel object
      */
     public JPanel createUpperPanel() {
-        JPanel upperPanel = new JPanel();
+        JPanel upperPanel = new JPanel(new GridLayout(1, 2));
         JLabel turn = new JLabel("    Turn: " + board.getTurns());
         upperPanel.add(turn);
 
@@ -94,6 +97,17 @@ public class UserInterface implements Runnable {
 //        } else {
 //            upperPanel.setBackground(Color.white);
 //        }
+        
+        JButton reset = new JButton("Reset");
+        reset.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                board.reset();
+            }
+        });
+        
+        upperPanel.add(reset);
+        
         return upperPanel;
     }
     
@@ -103,17 +117,6 @@ public class UserInterface implements Runnable {
      * @return returns a JPanel object
      */
     public JPanel createLowerPanel() {
-//        JPanel lowerPanel = new JPanel();
-        
-//        JButton reset = new JButton("Reset");
-//        reset.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                board.reset();
-//            }
-//        });
-//        
-//        lowerPanel.add(reset);
         JPanel lowerPanel = new JPanel();
         JLabel message = new JLabel("Message: " + board.getNotification());
         lowerPanel.add(message);

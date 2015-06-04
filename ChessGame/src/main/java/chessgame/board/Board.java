@@ -57,7 +57,7 @@ public class Board {
         }
 
         if (!pieces.getPiece(oldPlace).isValidMove(newPlace, pieces)) {
-            System.out.println("Not a valid move!");
+            notification = "Not a valid move!";
             return false;
         }
 
@@ -122,7 +122,7 @@ public class Board {
     public void turnSecondPart(String squareId) {
         if (move(startingPoint, squareId)) {
             pieces.move(startingPoint, squareId);
-
+            notification = startingPoint + " moved to " + squareId;
             turns++;
         }
 

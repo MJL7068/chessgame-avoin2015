@@ -12,7 +12,13 @@ public class Knight extends Piece {
     
     @Override
     public ImageIcon getImage() {
-        return null;
+        ImageIcon image;
+        if (this.getColor().equals("white")) {
+            image = new ImageIcon(getClass().getResource("/images/knightWhite.png"));
+        } else {
+            image = new ImageIcon(getClass().getResource("/images/knightBlack.png"));
+        }
+        return image;
     }
     
     public String toString() {

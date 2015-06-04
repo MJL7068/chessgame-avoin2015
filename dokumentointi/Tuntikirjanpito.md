@@ -39,3 +39,6 @@ n. 5 tuntia. Jaoin graafisen käyttöliittymän komponentit, shakkilaudan ja sii
 
 3.6 2015
 n. 2 tuntia. Kirjoitin testejä Piece-yläluokan alaluokille.
+
+4.6 2015
+n. 3 tuntia. Kirjoitin lisää testejä, aloitin JavaDocin tekemisen ja tein luokkakaaviot jotka kuvaavat siirron tapahtumia.

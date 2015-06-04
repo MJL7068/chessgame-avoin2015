@@ -1,12 +1,15 @@
 package chessgame.userinterface;
 import chessgame.board.Board;
-import chessgame.pieces.Piece;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JPanel;
 
+/**
+ *
+ * @author mattilei
+ */
 public class ChessBoard {
     private Board board;
     private JPanel chessBoard;
@@ -16,6 +19,11 @@ public class ChessBoard {
     private ArrayList<Square> squares;
     private HashMap<String, Square> squaresById;
     
+    /**
+     * This class is a component of the graphical interface. It contains 8x8
+     * squares. Methods are used to access individual squares.
+     * @param board
+     */
     public ChessBoard(Board board) {
         this.board = board;
         this.dark = new Color(92, 129, 152);
@@ -49,6 +57,10 @@ public class ChessBoard {
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public JPanel getChessBoard() {
         return chessBoard;
     }
@@ -63,6 +75,11 @@ public class ChessBoard {
         return squares;
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     public Square getSquare(String id) {
         return squaresById.get(id);
     }

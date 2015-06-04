@@ -13,6 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
+/**
+ *
+ * @author mattilei
+ */
 public class UserInterface implements Runnable {
 
     private JFrame frame;
@@ -26,6 +30,11 @@ public class UserInterface implements Runnable {
     private JLabel lowerPanel;
     private ArrayList<Square> squares;
 
+    /**
+     * Generates the graphical user interface. Methods are used to alter different
+     * components within it.
+     * @param board
+     */
     public UserInterface(Board board) {
         this.board = board;
 
@@ -69,6 +78,10 @@ public class UserInterface implements Runnable {
         return chessBoard.getChessBoard();
     }
     
+    /**
+     * Creates a part of the interface, which contains the turn-counter.
+     * @return returns the JPanel object
+     */
     public JPanel createUpperPanel() {
         JPanel upperPanel = new JPanel();
         JLabel turn = new JLabel("    Turn: " + board.getTurns());
@@ -84,6 +97,11 @@ public class UserInterface implements Runnable {
         return upperPanel;
     }
     
+    /**
+     * Creates a part of the interface, which contains a notification of the 
+     * current stage of the game
+     * @return returns a JPanel object
+     */
     public JPanel createLowerPanel() {
 //        JPanel lowerPanel = new JPanel();
         
@@ -104,20 +122,32 @@ public class UserInterface implements Runnable {
         return lowerPanel;
     }
 
+    /**
+     * Updates the whole interface
+     */
     public void updateTable() {
         updateChessBoard();
         updateLowerPanel();
         updateUpperPanel();
     }
 
+    /**
+     * Updates the upper panel according to the board
+     */
     public void updateUpperPanel() {
         upperPanel.setText("    Turn: " + board.getTurns());
     }
 
+    /**
+     * Updates the lower panel according to the board
+     */
     public void updateLowerPanel() {
         lowerPanel.setText("Message: " + board.getNotification());
     }
 
+    /**
+     *
+     */
     public void updateChessBoard() {
         ArrayList<Square> squares = chessBoard.getSquares();
         for (Square square : squares) {
@@ -125,22 +155,19 @@ public class UserInterface implements Runnable {
         }
     }
     
+    /**
+     * Updates a single square
+     * @param id
+     */
     public void updateSquare(String id) {
         Square square = chessBoard.getSquare(id);
-        
-        JButton button = square.getButton();
-            square.clearBackground();
-            if (board.getPiece(square.getId()) == null) {
-                button.setText("");
-            } else {
-                button.setText(board.getPiece(square.getId()).toString());
-            }
-            
-            if (square.getId().equals(board.getStartingPoint())) {
-                square.paintBackground(Color.white);
-            }
+        square.update(board);
     }
 
+    /**
+     *
+     * @param squares
+     */
     public void paintMovableSquares(HashSet<String> squares) {
         for (String squareId : squares) {
             Square square = chessBoard.getSquare(squareId);

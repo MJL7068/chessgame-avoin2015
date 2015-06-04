@@ -2,6 +2,7 @@ package chessgame.board;
 
 import chessgame.board.Board;
 import chessgame.userinterface.UserInterface;
+import javax.swing.SwingUtilities;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,19 +19,21 @@ public class BoardTest {
     @Before
     public void setUp() {
         board = new Board();
-        board.setInterface(new UserInterface(board));
+        UserInterface gui = new UserInterface(board);
+        board.setInterface(gui);
+        SwingUtilities.invokeLater(gui);
     }
     
-//    @Test
-//    public void resetWorksCorrectly() {
-//        board.turnFirstPart("A2");
-//        board.turnSecondPart("A4");
-//        board.turnFirstPart("D2");
-//        
-//        board.reset();
-//        assertEquals("", board.getStartingPoint());
-//        assertEquals(null, board.getPiece("A4"));
-//    }
+    @Test
+    public void resetWorksCorrectly() {
+        board.turnFirstPart("A2");
+        board.turnSecondPart("A4");
+        board.turnFirstPart("D2");
+        
+        board.reset();
+        assertEquals("", board.getStartingPoint());
+        assertEquals(null, board.getPiece("A4"));
+    }
     
 //    @Test
 //    public void turnFirstPartWorksCorrectly() {

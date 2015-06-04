@@ -45,4 +45,16 @@ public class knightTest {
         assertTrue(true == pieces.getPiece("E4").returnPossibleSquares(pieces).contains("G5"));
         assertTrue(true == pieces.getPiece("E4").returnPossibleSquares(pieces).contains("G3"));
     }
+    
+    @Test
+    public void knightCanMoveOnEnemySquare() {
+        //Knight moved to the center of the board
+        pieces.move("B1", "E4");
+        //Opponents pieces moved into position
+        pieces.move("A7", "F6");
+        pieces.move("A8", "D2");
+        
+        assertTrue(true == pieces.getPiece("E4").returnPossibleSquares(pieces).contains("F6"));
+        assertTrue(true == pieces.getPiece("E4").returnPossibleSquares(pieces).contains("D2"));
+    }
 }

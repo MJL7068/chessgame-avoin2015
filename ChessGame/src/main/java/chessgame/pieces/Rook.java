@@ -3,15 +3,31 @@ import chessgame.board.Pieces;
 import java.util.HashSet;
 import javax.swing.ImageIcon;
 
+/**
+ *
+ * @author mattilei
+ */
 public class Rook extends Piece {
     
+    /**
+     *
+     * @param column
+     * @param row
+     * @param color
+     */
     public Rook(int column, int row, String color) {
         super(column, row, color);
     }
     
     @Override
     public ImageIcon getImage() {
-        return null;
+        ImageIcon image;
+        if (this.getColor().equals("white")) {
+            image = new ImageIcon(getClass().getResource("/images/rookWhite.png"));
+        } else {
+            image = new ImageIcon(getClass().getResource("/images/rookBlack.png"));
+        }
+        return image;
     }
     
     public String toString() {

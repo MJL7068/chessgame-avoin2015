@@ -120,8 +120,14 @@ public class PiecesTest {
     @Test
     public void removePieceWorksCorrectly() {
         pieces.removePiece("A2");
+        //White king removed
+        pieces.removePiece("E2");
+        //Black king removed
+        pieces.removePiece("E8");
         
         assertEquals(null, pieces.getPiece("A2"));
+        assertEquals(null, pieces.getPiece("E2"));
+        assertEquals(null, pieces.getPiece("E8"));
     }
     
     @Test
@@ -132,5 +138,6 @@ public class PiecesTest {
         pieces.move("D7", "D5");
         assertEquals("Pawn, white: D5", pieces.getPiece("D5").toString());        
     }
+
         
 }

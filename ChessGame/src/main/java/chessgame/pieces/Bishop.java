@@ -4,8 +4,18 @@ import chessgame.board.Pieces;
 import java.util.HashSet;
 import javax.swing.ImageIcon;
 
+/**
+ *
+ * @author mattilei
+ */
 public class Bishop extends Piece {
 
+    /**
+     *
+     * @param column
+     * @param row
+     * @param color
+     */
     public Bishop(int column, int row, String color) {
         super(column, row, color);
     }

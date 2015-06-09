@@ -14,7 +14,7 @@ public class Board {
     private int turns;
     private String notification;
 
-    private boolean turnState;
+    private boolean isTurnActive;
     private String startingPoint;
 
     /**
@@ -27,7 +27,7 @@ public class Board {
         this.turns = 1;
         this.notification = "";
 
-        this.turnState = false;
+        this.isTurnActive = false;
         this.startingPoint = "";
     }
 
@@ -39,7 +39,7 @@ public class Board {
         this.turns = 1;
         this.notification = "";
 
-        this.turnState = false;
+        this.isTurnActive = false;
         this.startingPoint = "";
 
         gui.updateTable();
@@ -80,9 +80,10 @@ public class Board {
     }
 
     /**
-     *
-     * @param location
-     * @param color
+     * This method returns true if the piece on the location is the same color
+     * as the color given in the parameter
+     * @param location the location of the piece in question
+     * @param color the color that the piece is compared to
      * @return
      */
     public boolean checkForColor(String location, String color) {
@@ -105,7 +106,7 @@ public class Board {
      */
     public void turnFirstPart(String squareId) {
         if (checkForColor(squareId, getTurnColor())) {
-            turnState = true;
+            isTurnActive = true;
             startingPoint = squareId;
             notification = "move where?";
             gui.paintMovableSquares(pieces.getPiece(squareId).returnPossibleSquares(pieces));
@@ -126,7 +127,7 @@ public class Board {
             turns++;
         }
 
-        turnState = false;
+        isTurnActive = false;
 //        String startPoint = startingPoint;
         startingPoint = "";
 
@@ -136,15 +137,15 @@ public class Board {
     }
 
     /**
-     *
+     * Used to set the graphical interface as an attribute
      * @param gui
      */
     public void setInterface(UserInterface gui) {
         this.gui = gui;
     }
-
+ 
     /**
-     *
+     * 
      * @param location
      * @return
      */
@@ -153,15 +154,15 @@ public class Board {
     }
 
     /**
-     *
+     * Returns true if the turn is underway
      * @return
      */
     public boolean getTurnState() {
-        return turnState;
+        return isTurnActive;
     }
 
     /**
-     *
+     * Returns the starting point of a turn
      * @return
      */
     public String getStartingPoint() {
@@ -169,7 +170,7 @@ public class Board {
     }
 
     /**
-     *
+     * 
      * @return
      */
     public String getTurnColor() {

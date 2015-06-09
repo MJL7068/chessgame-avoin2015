@@ -149,7 +149,7 @@ public class UserInterface implements Runnable {
     }
 
     /**
-     *
+     * Updates the entire board
      */
     public void updateChessBoard() {
         ArrayList<Square> squares = chessBoard.getSquares();

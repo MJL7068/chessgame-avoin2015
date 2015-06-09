@@ -36,10 +36,39 @@ public class BishopTest {
         //Bishop set in the middle of the board
         pieces.move("C1", "D4");
         
-        assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("B6"));
-        assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("F6"));
+        //Pieces on the way removed
+        pieces.removePiece("A1");
+        pieces.removePiece("B2");
+        pieces.removePiece("A7");
+        pieces.removePiece("G7");
+        pieces.removePiece("F2");
+        pieces.removePiece("G1");
+        
+//        assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("B6"));
+//        assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("F6"));
+//        
+//        assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("C3"));
+        assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("A1"));
+        assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("A7"));
+        assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("G1"));
+        assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("H8"));
+    }
+    
+    @Test
+    public void bishopCanAttackEnemyPieces() {
+        //Bishop moved in to position
+        pieces.move("C1", "D4");
+        
+        //Enemy pieces moved into position
+        pieces.move("A7", "C3");
+        pieces.move("B7", "E3");
+        pieces.move("C7", "C5");
+        pieces.move("D7", "E5");
         
         assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("C3"));
+        assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("E3"));
+        assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("C5"));
+        assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("E5"));
     }
 
 }

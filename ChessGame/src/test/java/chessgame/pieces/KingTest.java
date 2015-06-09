@@ -52,4 +52,33 @@ public class KingTest {
         assertTrue(true == pieces.getPiece("E5").returnPossibleSquares(pieces).contains("E4"));
         assertTrue(true == pieces.getPiece("E5").returnPossibleSquares(pieces).contains("F4"));
     }
+    
+    @Test
+    public void kingCanAttackEnemyPieces() {
+        //King moved to the middle of the board
+        pieces.move("E1", "E4");
+        
+        //Enemy pieces moved into position
+        pieces.move("A7", "D5");
+        pieces.move("B7", "E5");
+        pieces.move("C7", "F5");
+        
+        pieces.move("D7", "D4");
+        pieces.move("E7", "F4");
+        
+        pieces.move("F7", "D3");
+        pieces.move("G7", "E3");
+        pieces.move("H7", "F3");
+        
+        assertTrue(true == pieces.getPiece("E4").returnPossibleSquares(pieces).contains("D5"));
+        assertTrue(true == pieces.getPiece("E4").returnPossibleSquares(pieces).contains("E5"));
+        assertTrue(true == pieces.getPiece("E4").returnPossibleSquares(pieces).contains("F5"));
+        
+        assertTrue(true == pieces.getPiece("E4").returnPossibleSquares(pieces).contains("D4"));
+        assertTrue(true == pieces.getPiece("E4").returnPossibleSquares(pieces).contains("F4"));
+        
+        assertTrue(true == pieces.getPiece("E4").returnPossibleSquares(pieces).contains("D3"));
+        assertTrue(true == pieces.getPiece("E4").returnPossibleSquares(pieces).contains("E3"));
+        assertTrue(true == pieces.getPiece("E4").returnPossibleSquares(pieces).contains("F3"));
+    }
 }

@@ -13,6 +13,8 @@ public class Pieces {
     
     private Piece whiteKing;
     private Piece blackKing;
+    
+    private Piece removedPiece;
 
     /**
      * This class stores all the pieces. Constructor generates all the pieces used
@@ -102,6 +104,10 @@ public class Pieces {
         return pieces.get(location);
     }
     
+    public HashMap<String, Piece> getPieces() {
+        return this.pieces;
+    }
+    
     /**
      * 
      * @param color
@@ -126,6 +132,8 @@ public class Pieces {
             return;
         }
         
+        removedPiece = pieces.get(location);
+        
         if (location.equals(getKing("white").getLocation())) {
             whiteKing = null;
         }
@@ -134,7 +142,20 @@ public class Pieces {
         }
         
         System.out.println("Piece " + pieces.get(location) + " removed!");
-        pieces.remove(location);   
+        pieces.remove(location);    
+    }
+    
+    public void addPiece() {
+        pieces.put(removedPiece.getLocation(), removedPiece);
+        removedPiece = null;
+    }
+
+    public Piece getRemovedPiece() {
+        return removedPiece;
+    }
+    
+    public void resetRemovedPiece() {
+        removedPiece = null;
     }
     
     /**

@@ -16,6 +16,7 @@ public class Board {
 
     private boolean isTurnActive;
     private String startingPoint;
+    private boolean check;
 
     /**
      * This class contains information about the state of the game, like pieces on the board and
@@ -29,6 +30,7 @@ public class Board {
 
         this.isTurnActive = false;
         this.startingPoint = "";
+        this.check = false;
     }
 
     /**
@@ -41,6 +43,7 @@ public class Board {
 
         this.isTurnActive = false;
         this.startingPoint = "";
+        this.check = false;
 
         gui.updateTable();
     }
@@ -125,6 +128,7 @@ public class Board {
             pieces.move(startingPoint, squareId);
             notification = startingPoint + " moved to " + squareId;
             turns++;
+            checkIfCheck(squareId);
         }
 
         isTurnActive = false;
@@ -134,6 +138,37 @@ public class Board {
 //        gui.updateSquare(startPoint);
 //        gui.updateSquare(squareId);
         gui.updateTable();        
+    }
+    
+    public boolean checkIfCheck(String id) {
+        for (Piece piece : pieces.getPieces().values()) {
+            if (piece.returnPossibleSquares(pieces).contains(pieces.getKing(getOpposingTurnColor()).getLocation())) {
+                cancelTurn(id);
+                notification = "Move would cause a check!";
+                check = true;
+                gui.updateUpperPanel();
+                return true;
+            }
+            
+            if(piece.returnPossibleSquares(pieces).contains(pieces.getKing(getTurnColor()).getLocation())) {
+                check = true;
+                notification = "Check";
+                gui.updateUpperPanel();
+            }
+        }
+        
+        pieces.resetRemovedPiece();
+        check = false;
+        gui.updateUpperPanel();
+        return false;
+    }
+    
+    public void cancelTurn(String id) {
+        pieces.move(id, startingPoint);
+        if (pieces.getRemovedPiece() != null) {
+            pieces.addPiece();
+        }
+        turns--;
     }
 
     /**
@@ -180,6 +215,14 @@ public class Board {
             return "black";
         }
     }
+    
+    public String getOpposingTurnColor() {
+        if (turns % 2 != 0) {
+            return "black";
+        } else {
+            return "white";
+        }
+    }
 
     /**
      *
@@ -195,6 +238,10 @@ public class Board {
      */
     public int getTurns() {
         return turns;
+    }
+    
+    public boolean getCheck() {
+        return check;
     }
 
     /**

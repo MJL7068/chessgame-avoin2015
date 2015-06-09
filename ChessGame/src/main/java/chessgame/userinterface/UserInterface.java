@@ -31,6 +31,7 @@ public class UserInterface implements Runnable {
     private ChessBoard chessBoard;
     private JLabel upperPanel;
     private JLabel lowerPanel;
+    private JLabel checkState;
     private ArrayList<Square> squares;
 
     /**
@@ -86,7 +87,7 @@ public class UserInterface implements Runnable {
      * @return returns the JPanel object
      */
     public JPanel createUpperPanel() {
-        JPanel upperPanel = new JPanel(new GridLayout(1, 2));
+        JPanel upperPanel = new JPanel(new GridLayout(1, 3));
         JLabel turn = new JLabel("    Turn: " + board.getTurns());
         upperPanel.add(turn);
 
@@ -97,6 +98,10 @@ public class UserInterface implements Runnable {
 //        } else {
 //            upperPanel.setBackground(Color.white);
 //        }
+        
+        JLabel checkState = new JLabel("");        
+        this.checkState = checkState;
+        upperPanel.add(checkState);
         
         JButton reset = new JButton("Reset");
         reset.addActionListener(new ActionListener() {
@@ -139,6 +144,12 @@ public class UserInterface implements Runnable {
      */
     public void updateUpperPanel() {
         upperPanel.setText("    Turn: " + board.getTurns());
+        
+        if (board.getCheck()) {
+            checkState.setText("CHECK!");
+        } else {
+            checkState.setText("");
+        }
     }
 
     /**

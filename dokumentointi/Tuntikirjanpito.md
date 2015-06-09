@@ -44,4 +44,4 @@ n. 2 tuntia. Kirjoitin testejä Piece-yläluokan alaluokille.
 n. 3,5 tuntia. Kirjoitin lisää testejä, aloitin JavaDocin tekemisen ja tein luokkakaaviot jotka kuvaavat siirron tapahtumia. Muokkasin myös koodia. Shakkinappuloiden kuvat hain Wikimedia Commonsista. Minulla oli yllättäviä vaikeuksia selvittää minne ohjelman käyttämät kuvat tallennetaan maven-projekteissa, mutta selvisin siitä ohjaajan avulla.
 
 9.6 2015
-n. 1 tunti. Tein lisää testejä.
+n. 2 tuntia. Lisää testejä ja ohjelmointia. Nyt ohjelma tunnistaa shakkitilanteen. Jos pelaajan kuningas on uhattuna, pystyy hän tekemään vain sellaisia siirtoja, jotka pelastavat kuninkaan. Ohjelma ei vielä tunnista shakkimattia.

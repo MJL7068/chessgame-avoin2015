@@ -44,4 +44,7 @@ n. 2 tuntia. Kirjoitin testejä Piece-yläluokan alaluokille.
 n. 3,5 tuntia. Kirjoitin lisää testejä, aloitin JavaDocin tekemisen ja tein luokkakaaviot jotka kuvaavat siirron tapahtumia. Muokkasin myös koodia. Shakkinappuloiden kuvat hain Wikimedia Commonsista. Minulla oli yllättäviä vaikeuksia selvittää minne ohjelman käyttämät kuvat tallennetaan maven-projekteissa, mutta selvisin siitä ohjaajan avulla.
 
 9.6 2015
-n. 1 tunti. Tein lisää testejä.
+n. 2 tuntia. Lisää testejä ja ohjelmointia. Nyt ohjelma tunnistaa shakkitilanteen. Jos pelaajan kuningas on uhattuna, pystyy hän tekemään vain sellaisia siirtoja, jotka pelastavat kuninkaan. Ohjelma ei vielä tunnista shakkimattia.
+
+10.6 2015
+n. 3 tuntia. Aloitin ohjelmoimaan tallennusmahdollisuutta. Nyt ohjelma pystyy tallentamaan yhden rivin pituisen kuvauksen kaikista laudalla olevista nappuloista. Käyttämäni notaatio muistuttaa Forsyth-Edwardsin notaatiota, mutta siinä on pieniä eroja. En ole vielä päättänyt, mihin pelitilanne tallennetaan. Lisäksi ohjelma kysyy nyt pelin alussa pelaajien nimet. Olen vielä ajatellut toteuttaa toiminnallisuuden, jossa pelaaja pystyy luovuttamaan. Tein myös lisää testejä ja päivitin Javadocia.

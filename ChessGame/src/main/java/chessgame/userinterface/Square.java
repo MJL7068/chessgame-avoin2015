@@ -20,9 +20,11 @@ public class Square {
     /**
      * This class is a component of the graphical interface. It contains a JPanel,
      * that can to updated to reflect the reflect the changes on the board.
-     * @param id
-     * @param board
-     * @param color
+     * @param id the chessboard is composed of 8 x 8 squares. The coordinates of
+     * the squares are stored in the id
+     * @param board the square updates itself based on the information stored in
+     * the board class
+     * @param color this parameter tells whether this square is light or dark
      */
     public Square(String id, Board board, Color color) {
         this.square = new JPanel(new BorderLayout());
@@ -64,6 +66,11 @@ public class Square {
         return id;
     }
     
+    /**
+     * This method causes the square to update itself based on the information
+     * found in the board class
+     * @param board
+     */
     public void update(Board board) {
         JButton button = getButton();
             clearBackground();
@@ -87,7 +94,7 @@ public class Square {
     }
 
     /**
-     * Turns the background of the square back
+     * Turns the background of the square back to normal color
      */
     public void clearBackground() {
         this.square.setBackground(color);

@@ -76,5 +76,10 @@ public class BoardTest {
         
         assertTrue(false == board.move("D5", "A4"));
     }
+    
+//    @Test
+//    public void checkIfCheckReturnFalseCorrectly() {
+//        assertTrue(false == board.checkIfCheck("A1"));        
+//    }
 
 }

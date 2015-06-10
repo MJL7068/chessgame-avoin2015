@@ -51,5 +51,14 @@ public class King extends Piece {
 
         return squares;
     }
+
+    @Override
+    public String returnNotation() {
+        if (super.getColor().equals("white")) {
+            return "K";
+        } else {
+            return "k";
+        }
+    }
     
 }

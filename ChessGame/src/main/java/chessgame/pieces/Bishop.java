@@ -96,4 +96,13 @@ public class Bishop extends Piece {
         return squares;
     }
 
+    @Override
+    public String returnNotation() {
+        if (super.getColor().equals("white")) {
+            return "B";
+        } else {
+            return "b";
+        }
+    }
+
 }

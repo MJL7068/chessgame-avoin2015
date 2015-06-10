@@ -129,5 +129,14 @@ public class Queen extends Piece {
         
         return squares;
     }
+
+    @Override
+    public String returnNotation() {
+        if (super.getColor().equals("white")) {
+            return "Q";
+        } else {
+            return "q";
+        }
+    }
     
 }

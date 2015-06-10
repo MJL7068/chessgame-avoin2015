@@ -17,6 +17,10 @@ public class Board {
     private boolean isTurnActive;
     private String startingPoint;
     private boolean check;
+    
+    private String gameState;
+    private String whitePlayerName;
+    private String  blackPlayerName;
 
     /**
      * This class contains information about the state of the game, like pieces on the board and
@@ -31,6 +35,7 @@ public class Board {
         this.isTurnActive = false;
         this.startingPoint = "";
         this.check = false;
+        this.gameState = "";
     }
 
     /**
@@ -40,6 +45,20 @@ public class Board {
         this.pieces = new Pieces();
         this.turns = 1;
         this.notification = "";
+
+        this.isTurnActive = false;
+        this.startingPoint = "";
+        this.check = false;
+
+        gui.updateTable();
+    }
+    
+    public void reset(String loadState) {
+        String[] loadStateParts = loadState.split(":");
+        this.pieces = new Pieces(loadStateParts[0]);
+        
+        this.turns = Integer.parseInt(loadStateParts[1]);
+        this.notification = loadStateParts[2];
 
         this.isTurnActive = false;
         this.startingPoint = "";
@@ -108,6 +127,10 @@ public class Board {
      * @param squareId
      */
     public void turnFirstPart(String squareId) {
+        if (gameState.equals("Game over")) {
+            notification = "Game over";
+            return;
+        }
         if (checkForColor(squareId, getTurnColor())) {
             isTurnActive = true;
             startingPoint = squareId;
@@ -145,7 +168,7 @@ public class Board {
             if (piece.returnPossibleSquares(pieces).contains(pieces.getKing(getOpposingTurnColor()).getLocation())) {
                 cancelTurn(id);
                 notification = "Move would cause a check!";
-                check = true;
+//                check = true;
                 gui.updateUpperPanel();
                 return true;
             }
@@ -178,7 +201,27 @@ public class Board {
     public void setInterface(UserInterface gui) {
         this.gui = gui;
     }
- 
+    
+    public void setWhitePlayerName(String name) {
+        this.whitePlayerName = name;
+    }
+    
+    public void setBlackPlayerName(String name) {
+        this.blackPlayerName = name;
+    }
+
+    public String getWhitePlayerName() {
+        return whitePlayerName;
+    }
+
+    public String getBlackPlayerName() {
+        return blackPlayerName;
+    }
+    
+    public void setGameState(String gameState) {
+        this.gameState = "Game over";
+    }
+
     /**
      * 
      * @param location

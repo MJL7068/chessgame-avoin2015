@@ -1,5 +1,6 @@
 package chessgame.userinterface;
 
+import chessgame.SaveState;
 import chessgame.board.Board;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -14,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 /**
@@ -27,16 +29,19 @@ public class UserInterface implements Runnable {
 
     private Color dark;
     private Color light;
-    
+
     private ChessBoard chessBoard;
     private JLabel upperPanel;
     private JLabel lowerPanel;
     private JLabel checkState;
     private ArrayList<Square> squares;
 
+    private SaveState saveState;
+
     /**
-     * Generates the graphical user interface. Methods are used to alter different
-     * components within it.
+     * Generates the graphical user interface. Methods are used to alter
+     * different components within it.
+     *
      * @param board
      */
     public UserInterface(Board board) {
@@ -44,8 +49,10 @@ public class UserInterface implements Runnable {
 
         this.dark = new Color(92, 129, 152);
         this.light = new Color(140, 150, 155);
-        
+
         this.squares = new ArrayList<Square>();
+
+        this.saveState = new SaveState(board);
     }
 
     @Override
@@ -61,17 +68,93 @@ public class UserInterface implements Runnable {
     }
 
     private void createComponents(Container container) {
-        container.add(drawBoard());
+//        container.add(drawBoard());
+        container.add(startMenu());
+    }
+
+    private JPanel startMenu() {
+        JPanel startMenu = new JPanel(new GridLayout(3, 2));
+
+        JLabel playerOne = new JLabel("White players name: ");
+        final JTextField playerOneField = new JTextField();
+        JLabel playerTwo = new JLabel("Black players name: ");
+        final JTextField playerTwoField = new JTextField();
+
+        JButton start = new JButton("Start!");
+        start.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                board.setWhitePlayerName(playerOneField.getText());
+                board.setBlackPlayerName(playerTwoField.getText());
+                
+                frame.setContentPane(drawBoard());
+                updateTable();
+                frame.validate();
+                frame.repaint();
+            }
+        });
+
+        startMenu.add(playerOne);
+        startMenu.add(playerOneField);
+        startMenu.add(playerTwo);
+        startMenu.add(playerTwoField);
+        startMenu.add(new JLabel(""));
+        startMenu.add(start);
+
+        return startMenu;
     }
 
     private JPanel drawBoard() {
         JPanel gameBoard = new JPanel(new BorderLayout());
+
+        gameBoard.add(createSavePanel(), BorderLayout.EAST);
+//        gameBoard.add(createSurrenderPanel(), BorderLayout.WEST);
 
         gameBoard.add(createChessBoard());
         gameBoard.add(createUpperPanel(), BorderLayout.NORTH);
         gameBoard.add(createLowerPanel(), BorderLayout.SOUTH);
 
         return gameBoard;
+    }
+    
+    private JButton createSurrenderPanel() {
+//        JPanel surrenderPanel = new JPanel();
+        
+        JButton surrender = new JButton("Surrender");
+        surrender.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                board.setGameState("Game over");
+            }
+        });
+        
+        return surrender;
+//        surrenderPanel.add(surrender);
+//        return surrenderPanel;
+    }
+
+    private JPanel createSavePanel() {
+        JPanel savePanel = new JPanel(new GridLayout(2, 1));
+
+        JButton save = new JButton("Save");
+        save.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                saveState.saveCurrentGame();
+            }
+        });
+        savePanel.add(save);
+
+        JButton load = new JButton("Load");
+        load.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                saveState.loadGame();
+            }
+        });
+        savePanel.add(load);
+
+        return savePanel;
     }
 
     private JPanel createChessBoard() {
@@ -81,13 +164,18 @@ public class UserInterface implements Runnable {
 
         return chessBoard.getChessBoard();
     }
-    
+
     /**
      * Creates a part of the interface, which contains the turn-counter.
+     *
      * @return returns the JPanel object
      */
     public JPanel createUpperPanel() {
-        JPanel upperPanel = new JPanel(new GridLayout(1, 3));
+        JPanel upperPanel = new JPanel(new GridLayout(1, 4));
+        
+        JLabel name = new JLabel(board.getBlackPlayerName());
+        upperPanel.add(name);
+        
         JLabel turn = new JLabel("    Turn: " + board.getTurns());
         upperPanel.add(turn);
 
@@ -98,11 +186,10 @@ public class UserInterface implements Runnable {
 //        } else {
 //            upperPanel.setBackground(Color.white);
 //        }
-        
-        JLabel checkState = new JLabel("");        
+        JLabel checkState = new JLabel("");
         this.checkState = checkState;
         upperPanel.add(checkState);
-        
+
         JButton reset = new JButton("Reset");
         reset.addActionListener(new ActionListener() {
             @Override
@@ -110,21 +197,25 @@ public class UserInterface implements Runnable {
                 board.reset();
             }
         });
-        
+
         upperPanel.add(reset);
-        
+
         return upperPanel;
     }
-    
+
     /**
-     * Creates a part of the interface, which contains a notification of the 
+     * Creates a part of the interface, which contains a notification of the
      * current stage of the game
+     *
      * @return returns a JPanel object
      */
     public JPanel createLowerPanel() {
-        JPanel lowerPanel = new JPanel();
+        JPanel lowerPanel = new JPanel(new GridLayout(1, 2));        
         JLabel message = new JLabel("Message: " + board.getNotification());
         lowerPanel.add(message);
+        
+        JLabel name = new JLabel(board.getWhitePlayerName());
+        lowerPanel.add(name);
 
         this.lowerPanel = message;
         return lowerPanel;
@@ -144,7 +235,7 @@ public class UserInterface implements Runnable {
      */
     public void updateUpperPanel() {
         upperPanel.setText("    Turn: " + board.getTurns());
-        
+
         if (board.getCheck()) {
             checkState.setText("CHECK!");
         } else {
@@ -168,10 +259,11 @@ public class UserInterface implements Runnable {
             updateSquare(square.getId());
         }
     }
-    
+
     /**
      * Updates a single square
-     * @param id
+     *
+     * @param id what are the squares coordinates
      */
     public void updateSquare(String id) {
         Square square = chessBoard.getSquare(id);
@@ -179,16 +271,16 @@ public class UserInterface implements Runnable {
     }
 
     /**
-     *
+     * 
      * @param squares
      */
     public void paintMovableSquares(HashSet<String> squares) {
         for (String squareId : squares) {
             Square square = chessBoard.getSquare(squareId);
             if (square != null) {
-            square.paintBackground(Color.LIGHT_GRAY);
+                square.paintBackground(Color.LIGHT_GRAY);
             }
         }
-    }    
+    }
 
 }

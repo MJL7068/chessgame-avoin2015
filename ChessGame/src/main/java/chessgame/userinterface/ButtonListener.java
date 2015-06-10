@@ -14,7 +14,7 @@ public class ButtonListener implements ActionListener {
     /**
      * This class determines what happens when a JButton object is pressed on
      * the interface.
-     * @param squareId
+     * @param squareId this parameter tells what are the squares coordinates
      * @param board
      */
     public ButtonListener(String squareId, Board board) {

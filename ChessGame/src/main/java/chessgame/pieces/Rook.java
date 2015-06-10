@@ -87,5 +87,14 @@ public class Rook extends Piece {
         
         return squares;
     }
+
+    @Override
+    public String returnNotation() {
+        if (super.getColor().equals("white")) {
+            return "R";
+        } else {
+            return "r";
+        }
+    }
     
 }

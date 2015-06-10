@@ -138,6 +138,17 @@ public class PiecesTest {
         pieces.move("D7", "D5");
         assertEquals("Pawn, white: D5", pieces.getPiece("D5").toString());        
     }
+    
+    @Test
+    public void piecesCanBeGeneratedWithFONNotation() {
+        Pieces newPieces = new Pieces("RNBQKBNR/PPPPP2P/8/5PPq/4p3/8/pppp1ppp/rnb1kbnr/");       
+        assertEquals("Pawn, white: F4", newPieces.getPiece("F4").toString());
+        assertEquals("Queen, black: H4", newPieces.getPiece("H4").toString());
+        
+        Pieces oppositePieces = new Pieces("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR/");
+        assertEquals("King, black: E1", oppositePieces.getPiece("E1").toString());
+        assertEquals("King, white: E8", oppositePieces.getPiece("E8").toString());
+    }
 
         
 }

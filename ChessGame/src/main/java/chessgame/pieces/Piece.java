@@ -108,6 +108,7 @@ public abstract class Piece {
      * @return a HashSet that contains the ids of all the squares where the piece can move to
      */
     public abstract HashSet<String> returnPossibleSquares(Pieces pieces);
+    public abstract String returnNotation();
 
     /**
      *

@@ -84,5 +84,14 @@ public class Knight extends Piece {
 
         return squares;
     }
+
+    @Override
+    public String returnNotation() {
+        if (super.getColor().equals("white")) {
+            return "N";
+        } else {
+            return "n";
+        }
+    }
     
 }

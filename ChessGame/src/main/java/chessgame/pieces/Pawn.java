@@ -37,7 +37,7 @@ public class Pawn extends Piece {
             squares.add(columns[column - 1] + (row + 1));
             }
             if (row == 2) {
-                if (pieces.getPiece(columns[column - 1] + (row + 2)) == null) {
+                if (pieces.getPiece(columns[column - 1] + (row + 2)) == null && pieces.getPiece(columns[column - 1] + (row + 1)) == null) {
                 squares.add(columns[column - 1] + (row + 2));
                 }
             }
@@ -58,7 +58,7 @@ public class Pawn extends Piece {
             squares.add(columns[column - 1] + (row - 1));
             }
             if (row == 7) {
-                if (pieces.getPiece(columns[column - 1] + (row - 2)) == null) {
+                if (pieces.getPiece(columns[column - 1] + (row - 2)) == null && pieces.getPiece(columns[column - 1] + (row - 1)) == null) {
                 squares.add(columns[column - 1] + (row - 2));
                 }
             }
@@ -75,6 +75,15 @@ public class Pawn extends Piece {
         }
 
         return squares;
+    }
+
+    @Override
+    public String returnNotation() {
+        if (super.getColor().equals("white")) {
+            return "P";
+        } else {
+            return "p";
+        }
     }
     
 }

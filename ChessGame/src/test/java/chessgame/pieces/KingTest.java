@@ -81,4 +81,10 @@ public class KingTest {
         assertTrue(true == pieces.getPiece("E4").returnPossibleSquares(pieces).contains("E3"));
         assertTrue(true == pieces.getPiece("E4").returnPossibleSquares(pieces).contains("F3"));
     }
+    
+    @Test
+    public void returNotationWorks() {
+        assertEquals("K", pieces.getPiece("E1").returnNotation());
+        assertEquals("k", pieces.getPiece("E8").returnNotation());
+    }
 }

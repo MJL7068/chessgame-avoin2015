@@ -58,7 +58,7 @@ public class UserInterface implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("Chess");
-        frame.setPreferredSize(new Dimension(500, 500));
+        frame.setPreferredSize(new Dimension(550, 500));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         createComponents(frame.getContentPane());
@@ -108,7 +108,7 @@ public class UserInterface implements Runnable {
         JPanel gameBoard = new JPanel(new BorderLayout());
 
         gameBoard.add(createSavePanel(), BorderLayout.EAST);
-//        gameBoard.add(createSurrenderPanel(), BorderLayout.WEST);
+        gameBoard.add(createSurrenderPanel(), BorderLayout.WEST);
 
         gameBoard.add(createChessBoard());
         gameBoard.add(createUpperPanel(), BorderLayout.NORTH);
@@ -117,18 +117,34 @@ public class UserInterface implements Runnable {
         return gameBoard;
     }
     
-    private JButton createSurrenderPanel() {
-//        JPanel surrenderPanel = new JPanel();
+    private JPanel createSurrenderPanel() {
+        JPanel surrenderPanel = new JPanel(new GridLayout(2, 1));
         
-        JButton surrender = new JButton("Surrender");
+        //surrenderpanel is also used to store the reset-button
+        JButton reset = new JButton("Reset");
+        reset.setToolTipText("Reset the game");
+        reset.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                board.reset();
+            }
+        });
+
+        surrenderPanel.add(reset);      
+        
+        JButton surrender = new JButton("Give up");
+        surrender.setToolTipText("Surrender the game");
         surrender.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 board.setGameState("Game over");
+                updateLowerPanel();
             }
         });
         
-        return surrender;
+        surrenderPanel.add(surrender);
+        
+        return surrenderPanel;
 //        surrenderPanel.add(surrender);
 //        return surrenderPanel;
     }
@@ -137,6 +153,8 @@ public class UserInterface implements Runnable {
         JPanel savePanel = new JPanel(new GridLayout(2, 1));
 
         JButton save = new JButton("Save");
+        
+        save.setToolTipText("Save your game");
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -146,6 +164,7 @@ public class UserInterface implements Runnable {
         savePanel.add(save);
 
         JButton load = new JButton("Load");
+        load.setToolTipText("Load the last saved game");
         load.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -171,34 +190,29 @@ public class UserInterface implements Runnable {
      * @return returns the JPanel object
      */
     public JPanel createUpperPanel() {
-        JPanel upperPanel = new JPanel(new GridLayout(1, 4));
+        JPanel upperPanel = new JPanel(new GridLayout(2, 1));
         
-        JLabel name = new JLabel(board.getBlackPlayerName());
+        JLabel name = new JLabel(" Black player: " + board.getBlackPlayerName());
         upperPanel.add(name);
         
-        JLabel turn = new JLabel("    Turn: " + board.getTurns());
+        JLabel turn = new JLabel();
         upperPanel.add(turn);
 
         this.upperPanel = turn;
 
-//        if (board.getTurns() % 2 == 0) {
-//            upperPanel.setBackground(Color.black);
-//        } else {
-//            upperPanel.setBackground(Color.white);
-//        }
-        JLabel checkState = new JLabel("");
-        this.checkState = checkState;
-        upperPanel.add(checkState);
+//        JLabel checkState = new JLabel("");
+//        this.checkState = checkState;
+//        upperPanel.add(checkState);
 
-        JButton reset = new JButton("Reset");
-        reset.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                board.reset();
-            }
-        });
-
-        upperPanel.add(reset);
+//        JButton reset = new JButton("Reset");
+//        reset.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                board.reset();
+//            }
+//        });
+//
+//        upperPanel.add(reset);
 
         return upperPanel;
     }
@@ -210,11 +224,12 @@ public class UserInterface implements Runnable {
      * @return returns a JPanel object
      */
     public JPanel createLowerPanel() {
-        JPanel lowerPanel = new JPanel(new GridLayout(1, 2));        
-        JLabel message = new JLabel("Message: " + board.getNotification());
+        JPanel lowerPanel = new JPanel(new GridLayout(2, 1));  
+        
+        JLabel message = new JLabel();
         lowerPanel.add(message);
         
-        JLabel name = new JLabel(board.getWhitePlayerName());
+        JLabel name = new JLabel(" White player: " + board.getWhitePlayerName());
         lowerPanel.add(name);
 
         this.lowerPanel = message;
@@ -234,20 +249,20 @@ public class UserInterface implements Runnable {
      * Updates the upper panel according to the board
      */
     public void updateUpperPanel() {
-        upperPanel.setText("    Turn: " + board.getTurns());
+        upperPanel.setText(" Turn: " + board.getTurns() + ", " + board.getTurnColor() + "s turn to move");
 
-        if (board.getCheck()) {
-            checkState.setText("CHECK!");
-        } else {
-            checkState.setText("");
-        }
+//        if (board.getCheck()) {
+//            checkState.setText("CHECK!");
+//        } else {
+//            checkState.setText("");
+//        }
     }
 
     /**
      * Updates the lower panel according to the board
      */
     public void updateLowerPanel() {
-        lowerPanel.setText("Message: " + board.getNotification());
+        lowerPanel.setText(" Message: " + board.getNotification());
     }
 
     /**

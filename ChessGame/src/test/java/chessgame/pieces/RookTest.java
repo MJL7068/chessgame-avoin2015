@@ -15,13 +15,12 @@ public class RookTest {
     
     @Before
     public void setUp() {        
-        pieces = new Pieces();
-        
-        pieces.move("A1", "D4");
+        pieces = new Pieces();                
     }
     
     @Test
     public void rookExists() {
+        pieces.move("A1", "D4");
         assertEquals("Rook, white: D4", pieces.getPiece("D4").toString());
     }
 //    
@@ -43,23 +42,35 @@ public class RookTest {
 //    }
     
     @Test
-    public void rookCanMoveUp() {        
-        assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("D6"));
+    public void rookCanMoveUp() {   
+        pieces.move("A1", "A3");
+        assertTrue(true == pieces.getPiece("A3").returnPossibleSquares(pieces).contains("A7"));
     }
     
     @Test
     public void rookCanMoveDown() {
-        assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("D3"));
+        pieces.move("A8", "A6");
+        assertTrue(true == pieces.getPiece("A6").returnPossibleSquares(pieces).contains("A2"));
     }
     
     @Test
     public void rookCanMoveLeft() {
-        assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("A4"));
+        pieces.move("A1", "A3");
+        pieces.move("A7", "H3");
+        assertTrue(true == pieces.getPiece("A3").returnPossibleSquares(pieces).contains("H3"));
     }
     
     @Test
     public void rookCanMoveRight() {
-        assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("H4"));
-    }   
+        pieces.move("H8", "H6");
+        pieces.move("A2", "A6");
+        assertTrue(true == pieces.getPiece("H6").returnPossibleSquares(pieces).contains("A6"));
+    }
+    
+    @Test
+    public void returNotationWorks() {
+        assertEquals("R", pieces.getPiece("A1").returnNotation());
+        assertEquals("r", pieces.getPiece("A8").returnNotation());
+    }
 
 }

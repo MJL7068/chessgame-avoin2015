@@ -149,6 +149,7 @@ public class PiecesTest {
         assertEquals("King, black: E1", oppositePieces.getPiece("E1").toString());
         assertEquals("King, white: E8", oppositePieces.getPiece("E8").toString());
     }
+    
 
         
 }

@@ -2,6 +2,8 @@ package chessgame;
 
 import chessgame.board.Board;
 import chessgame.pieces.Piece;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 /**

@@ -120,4 +120,10 @@ public class PawnTest {
         assertTrue(true == pieces.getPiece("B5").returnPossibleSquares(pieces).contains("A4"));
         assertTrue(true == pieces.getPiece("B5").returnPossibleSquares(pieces).contains("C4"));
     }
+    
+    @Test
+    public void returNotationWorks() {
+        assertEquals("P", pieces.getPiece("A2").returnNotation());
+        assertEquals("p", pieces.getPiece("A7").returnNotation());
+    }
 }

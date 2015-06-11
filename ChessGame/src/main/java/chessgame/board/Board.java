@@ -13,8 +13,10 @@ public class Board {
     private UserInterface gui;
     private int turns;
     private String notification;
-
+    
+    //if a piece is active and awaiting order to move to a new place, this variable is true
     private boolean isTurnActive;
+    //this variable stores the starting point of the move
     private String startingPoint;
     private boolean check;
     
@@ -49,10 +51,16 @@ public class Board {
         this.isTurnActive = false;
         this.startingPoint = "";
         this.check = false;
+        this.gameState = "";
 
         gui.updateTable();
     }
     
+    /**
+     * This method resets the game according to loaded information
+     * @param loadState this string contains the placement of all the pieces and other data,
+     * like the number of turns
+     *  */
     public void reset(String loadState) {
         String[] loadStateParts = loadState.split(":");
         this.pieces = new Pieces(loadStateParts[0]);
@@ -63,6 +71,7 @@ public class Board {
         this.isTurnActive = false;
         this.startingPoint = "";
         this.check = false;
+        this.gameState = "";
 
         gui.updateTable();
     }
@@ -123,12 +132,13 @@ public class Board {
     }
 
     /**
-     *
-     * @param squareId
+     * This method is called if no piece is yet active. It checks if the selected piece
+     * is valid and then stores the location of the selected square and paints gray all
+     * the squares where the piece can move
+     * @param squareId tells which piece was selected
      */
     public void turnFirstPart(String squareId) {
-        if (gameState.equals("Game over")) {
-            notification = "Game over";
+        if (gameState.equals("Game over")) {            
             return;
         }
         if (checkForColor(squareId, getTurnColor())) {
@@ -143,7 +153,9 @@ public class Board {
     }
 
     /**
-     *
+     * This method is called if the turn is active and there is a piece that is waiting
+     * for a move order. The method will check if the move is valid and then perform the move.
+     * Afterwards the board is updated.
      * @param squareId
      */
     public void turnSecondPart(String squareId) {
@@ -163,11 +175,17 @@ public class Board {
         gui.updateTable();        
     }
     
+    /**
+     * This method is used to check if the game is in check or if a move would cause it
+     * to be in check-state.
+     * @param id the location of the piece that is being moved when this method is called
+     * @return returns true if a move causes or has already caused a check.
+     */
     public boolean checkIfCheck(String id) {
         for (Piece piece : pieces.getPieces().values()) {
             if (piece.returnPossibleSquares(pieces).contains(pieces.getKing(getOpposingTurnColor()).getLocation())) {
                 cancelTurn(id);
-                notification = "Move would cause a check!";
+                notification = "Game is in check or move would cause a check!";
 //                check = true;
                 gui.updateUpperPanel();
                 return true;
@@ -175,7 +193,7 @@ public class Board {
             
             if(piece.returnPossibleSquares(pieces).contains(pieces.getKing(getTurnColor()).getLocation())) {
                 check = true;
-                notification = "Check";
+                notification = "Check!";
                 gui.updateUpperPanel();
             }
         }
@@ -186,6 +204,10 @@ public class Board {
         return false;
     }
     
+    /**
+     * This method cancel the movement of the piece and changes it back.
+     * @param id
+     */
     public void cancelTurn(String id) {
         pieces.move(id, startingPoint);
         if (pieces.getRemovedPiece() != null) {
@@ -220,6 +242,8 @@ public class Board {
     
     public void setGameState(String gameState) {
         this.gameState = "Game over";
+        notification = "Game over, " + getOpposingTurnColor() + " wins!";
+        gui.updateLowerPanel();
     }
 
     /**

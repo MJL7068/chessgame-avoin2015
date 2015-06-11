@@ -70,5 +70,11 @@ public class BishopTest {
         assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("C5"));
         assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("E5"));
     }
+    @Test
+    public void returNotationWorks() {
+        assertEquals("B", pieces.getPiece("C1").returnNotation());
+        assertEquals("b", pieces.getPiece("C8").returnNotation());
+    }
+    
 
 }

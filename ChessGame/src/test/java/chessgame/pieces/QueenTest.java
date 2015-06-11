@@ -78,4 +78,10 @@ public class QueenTest {
         assertTrue(true == pieces.getPiece("E4").returnPossibleSquares(pieces).contains("A4"));
         assertTrue(true == pieces.getPiece("E4").returnPossibleSquares(pieces).contains("H4"));
     }
+    @Test
+    public void returNotationWorks() {
+        assertEquals("Q", pieces.getPiece("D1").returnNotation());
+        assertEquals("q", pieces.getPiece("D8").returnNotation());
+    }
+    
 }

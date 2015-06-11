@@ -89,7 +89,14 @@ public class Pieces {
         }
 
     }
-
+    
+    /**
+     * Generates all the pieces stored in the parameter
+     *
+     * @param FONNotation this string stores all the pieces on the board in
+     * a given state for example string RNBQKBNR/PPPPPPPP/8/8/8/8/pppppppp/rnbqkbnr/
+     * stores all the pieces from the start of a chess game.
+     */
     public void generatePiecesAccordingToFONNotation(String FONNotation) {
         String[] parts = FONNotation.split("/");
 

@@ -48,3 +48,6 @@ n. 3 tuntia. Lisää testejä ja ohjelmointia. Nyt ohjelma tunnistaa shakkitilan
 
 10.6 2015
 n. 4 tuntia. Aloitin ohjelmoimaan tallennusmahdollisuutta. Nyt ohjelma pystyy tallentamaan yhden rivin pituisen kuvauksen kaikista laudalla olevista nappuloista. Käyttämäni notaatio muistuttaa Forsyth-Edwardsin notaatiota, mutta siinä on pieniä eroja. En ole vielä päättänyt, mihin pelitilanne tallennetaan. Lisäksi ohjelma kysyy nyt pelin alussa pelaajien nimet. Olen vielä ajatellut toteuttaa toiminnallisuuden, jossa pelaaja pystyy luovuttamaan. Tein myös lisää testejä ja päivitin Javadocia.
+
+11.6 2015
+n. 4 tuntia. Nyt peli päättyy kun toinen pelaajista painaa Give up-painiketta. Tilanteessa jossa on shakkimatti mikään pelaajan liikkeistä ei ole sallittu, vaan ainoa vaihtoehto on luovuttaa. Peli ei itse tunnista shakkimattia. Muokkasin myös käyttöliittymää. Nyt siinä näkyy pelaajien syöttämät nimet. Tein myös lisää testejä ja päivitin Javadocia.

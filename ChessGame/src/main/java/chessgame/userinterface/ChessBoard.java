@@ -46,7 +46,6 @@ public class ChessBoard {
                 }
 
                 String id = columns[x - 1] + y;
-//                JPanel square = createSquare(id, board.getPiece(id), color);
                 Square newSquare = new Square(id, board, color);
                 squares.add(newSquare);
                 squaresById.put(newSquare.getId(), newSquare);
@@ -58,25 +57,22 @@ public class ChessBoard {
     }
     
     /**
-     *
+     * Returns the JPanel representation of this class.
      * @return
      */
     public JPanel getChessBoard() {
         return chessBoard;
     }
-    
-//    private JPanel createSquare(String id, Piece piece, Color color) {
-//        Square square = new Square(board, id, piece, color);
-//        
-//        return square.getSquare();
-//    }
 
+    /**
+     * Returns all the squares stored in the ChessBoard-object.
+     */
     ArrayList<Square> getSquares() {
         return squares;
     }
     
     /**
-     *
+     * Returns the square stored in the ChessBoard-object
      * @param id
      * @return
      */

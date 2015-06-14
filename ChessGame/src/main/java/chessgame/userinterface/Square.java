@@ -40,7 +40,6 @@ public class Square {
             button = new JButton();
         } else {
             button = new JButton(board.getPiece(id).getImage());
-//            button = new JButton(board.getPiece(id).getImage());
         }
         
         button.setContentAreaFilled(false);
@@ -51,17 +50,13 @@ public class Square {
     }
     
     /**
-     *
+     * Returns the JPanel representation of this class.
      * @return
      */
     public JPanel getSquare() {
         return square;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getId() {
         return id;
     }
@@ -81,16 +76,23 @@ public class Square {
             }
             
             if (id.equals(board.getStartingPoint())) {
-                paintBackground(Color.white);
+                paintBackgroundWhite();
             }
     }
     
     /**
-     * Paints the background of the square based on the parameter
-     * @param color
+     * Paints the background of the square white
      */
-    public void paintBackground(Color color) {        
-        this.square.setBackground(color);
+    public void paintBackgroundWhite() {
+        this.square.setBackground(Color.white);
+    }
+    
+    /**
+     * Paints the background of the square in lighter color than it was originally
+     */
+    public void paintBackgroundLighter() {
+        Color light = new Color(color.getRed() + 52, color.getGreen() + 42, color.getBlue() + 37);
+        this.square.setBackground(light);
     }
 
     /**
@@ -101,7 +103,7 @@ public class Square {
     }
 
     /**
-     *
+     * Returns the JButton-object that is stored in this class.
      * @return
      */
     public JButton getButton() {

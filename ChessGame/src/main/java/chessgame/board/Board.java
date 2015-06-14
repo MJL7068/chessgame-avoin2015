@@ -20,7 +20,7 @@ public class Board {
     private String startingPoint;
     private boolean check;
     
-    private String gameState;
+    private String gameOver;
     private String whitePlayerName;
     private String  blackPlayerName;
 
@@ -37,7 +37,7 @@ public class Board {
         this.isTurnActive = false;
         this.startingPoint = "";
         this.check = false;
-        this.gameState = "";
+        this.gameOver = "empty";
     }
 
     /**
@@ -51,7 +51,7 @@ public class Board {
         this.isTurnActive = false;
         this.startingPoint = "";
         this.check = false;
-        this.gameState = "";
+        this.gameOver = "empty";
 
         gui.updateTable();
     }
@@ -59,7 +59,9 @@ public class Board {
     /**
      * This method resets the game according to loaded information
      * @param loadState this string contains the placement of all the pieces and other data,
-     * like the number of turns
+     * like the number of turns, it's split into multiple parts, first contains the location
+     * of the pieces, second the number of turns, third contains the last notification, fourth
+     * tells whether the game is over or not and the last two contain the names of the players
      *  */
     public void reset(String loadState) {
         String[] loadStateParts = loadState.split(":");
@@ -71,13 +73,18 @@ public class Board {
         this.isTurnActive = false;
         this.startingPoint = "";
         this.check = false;
-        this.gameState = "";
+        this.gameOver = loadStateParts[3];
+        
+        this.whitePlayerName = loadStateParts[4];
+        this.blackPlayerName = loadStateParts[5];
 
         gui.updateTable();
     }
 
     /**
-     * This method returns true if the move of the piece from one square to another is valid
+     * This method returns true if the move of the piece from one square to another is valid. It checks
+     * if there is a piece located in the place where the piece is to be moved and then if it can
+     * be moved to the new location
      * @param oldPlace  the id of the square where the piece is moved from
      * @param newPlace the id of the square where the pieces is being moved to
      * @return whether the move from one square to another is valid
@@ -124,7 +131,6 @@ public class Board {
 
         if (!pieces.getPiece(location).getColor().equals(color)) {
             this.notification = "Not your pieces!";
-//            System.out.println(notification);
             return false;
         }
 
@@ -138,7 +144,7 @@ public class Board {
      * @param squareId tells which piece was selected
      */
     public void turnFirstPart(String squareId) {
-        if (gameState.equals("Game over")) {            
+        if (gameOver.equals("Game over")) {            
             return;
         }
         if (checkForColor(squareId, getTurnColor())) {
@@ -147,7 +153,6 @@ public class Board {
             notification = "move where?";
             gui.paintMovableSquares(pieces.getPiece(squareId).returnPossibleSquares(pieces));
         }
-//        updateGui();
         gui.updateSquare(squareId);
         gui.updateLowerPanel();
     }
@@ -167,12 +172,9 @@ public class Board {
         }
 
         isTurnActive = false;
-//        String startPoint = startingPoint;
         startingPoint = "";
 
-//        gui.updateSquare(startPoint);
-//        gui.updateSquare(squareId);
-        gui.updateTable();        
+        gui.updateTable();
     }
     
     /**
@@ -186,15 +188,15 @@ public class Board {
             if (piece.returnPossibleSquares(pieces).contains(pieces.getKing(getOpposingTurnColor()).getLocation())) {
                 cancelTurn(id);
                 notification = "Game is in check or move would cause a check!";
-//                check = true;
                 gui.updateUpperPanel();
                 return true;
             }
             
             if(piece.returnPossibleSquares(pieces).contains(pieces.getKing(getTurnColor()).getLocation())) {
                 check = true;
-                notification = "Check!";
+                notification = "Check!";                
                 gui.updateUpperPanel();
+                gui.showCheckMessage();
             }
         }
         
@@ -241,13 +243,13 @@ public class Board {
     }
     
     public void setGameState(String gameState) {
-        this.gameState = "Game over";
+        this.gameOver = "Game over";
         notification = "Game over, " + getOpposingTurnColor() + " wins!";
         gui.updateLowerPanel();
     }
 
     /**
-     * 
+     * Returns the piece from the location
      * @param location
      * @return
      */
@@ -271,10 +273,6 @@ public class Board {
         return startingPoint;
     }
 
-    /**
-     * 
-     * @return
-     */
     public String getTurnColor() {
         if (turns % 2 != 0) {
             return "white";
@@ -291,18 +289,10 @@ public class Board {
         }
     }
 
-    /**
-     *
-     * @return
-     */
     public String getNotification() {
         return notification;
     }
 
-    /**
-     *
-     * @return
-     */
     public int getTurns() {
         return turns;
     }
@@ -311,10 +301,7 @@ public class Board {
         return check;
     }
 
-    /**
-     *
-     */
-    public void printPieces() {
-        pieces.printPieces();
-    }
+    public String getGameOver() {
+        return gameOver;
+    }    
 }

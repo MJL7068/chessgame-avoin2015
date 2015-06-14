@@ -1,5 +1,4 @@
 package chessgame.userinterface;
-
 import chessgame.SaveState;
 import chessgame.board.Board;
 import java.awt.BorderLayout;
@@ -14,6 +13,7 @@ import java.util.HashSet;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
@@ -33,9 +33,10 @@ public class UserInterface implements Runnable {
     private ChessBoard chessBoard;
     private JLabel upperPanel;
     private JLabel lowerPanel;
-    private JLabel checkState;
+    private JLabel whitePlayerName;
+    private JLabel blackPlayerName;
+    
     private ArrayList<Square> squares;
-
     private SaveState saveState;
 
     /**
@@ -71,7 +72,12 @@ public class UserInterface implements Runnable {
 //        container.add(drawBoard());
         container.add(startMenu());
     }
-
+    
+    /**
+     * A component of the graphical interface that has the option to select the
+     * players name, start a new game or load the last saved game
+     * @return returns the JPanel object that contains the menu
+     */
     private JPanel startMenu() {
         JPanel startMenu = new JPanel(new GridLayout(3, 2));
 
@@ -80,7 +86,7 @@ public class UserInterface implements Runnable {
         JLabel playerTwo = new JLabel("Black players name: ");
         final JTextField playerTwoField = new JTextField();
 
-        JButton start = new JButton("Start!");
+        JButton start = new JButton("Start a new game!");
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -93,17 +99,35 @@ public class UserInterface implements Runnable {
                 frame.repaint();
             }
         });
+        
+        JButton load = new JButton("Load your last saved game!");
+        load.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {                               
+                frame.setContentPane(drawBoard());
+                updateTable();
+                frame.validate();
+                frame.repaint();
+                
+                saveState.loadGame();
+            }
+        });
 
         startMenu.add(playerOne);
         startMenu.add(playerOneField);
         startMenu.add(playerTwo);
         startMenu.add(playerTwoField);
-        startMenu.add(new JLabel(""));
+        startMenu.add(load);
         startMenu.add(start);
 
         return startMenu;
     }
-
+    
+    /**
+     * A component of the graphical interface that has all the components of the
+     * gameboard.
+     * @return returns the JPanel object that contains the board
+     */
     private JPanel drawBoard() {
         JPanel gameBoard = new JPanel(new BorderLayout());
 
@@ -117,6 +141,11 @@ public class UserInterface implements Runnable {
         return gameBoard;
     }
     
+    /**
+     * A component of the graphical interface that has buttons to reset and to
+     * end the game
+     * @return returns the JPanel object that contains the panel
+     */
     private JPanel createSurrenderPanel() {
         JPanel surrenderPanel = new JPanel(new GridLayout(2, 1));
         
@@ -138,6 +167,7 @@ public class UserInterface implements Runnable {
             @Override
             public void actionPerformed(ActionEvent e) {
                 board.setGameState("Game over");
+                showGameOverMessage();
                 updateLowerPanel();
             }
         });
@@ -145,10 +175,13 @@ public class UserInterface implements Runnable {
         surrenderPanel.add(surrender);
         
         return surrenderPanel;
-//        surrenderPanel.add(surrender);
-//        return surrenderPanel;
     }
-
+    
+    /**
+     * A component of the graphical interface that has buttons to save the game
+     * and to load the last saved game
+     * @return returns the JPanel object that contains the panel
+     */
     private JPanel createSavePanel() {
         JPanel savePanel = new JPanel(new GridLayout(2, 1));
 
@@ -175,7 +208,12 @@ public class UserInterface implements Runnable {
 
         return savePanel;
     }
-
+    
+    /**
+     * This method creates the ChessBoard-object that contains all the squares
+     * of the board.
+     * @return returns the JPanel object that contains the board
+     */
     private JPanel createChessBoard() {
         ChessBoard chessBoard = new ChessBoard(board);
 
@@ -185,7 +223,8 @@ public class UserInterface implements Runnable {
     }
 
     /**
-     * Creates a part of the interface, which contains the turn-counter.
+     * Creates a part of the interface, which contains the turn-counter and the
+     * name of the black player.
      *
      * @return returns the JPanel object
      */
@@ -194,32 +233,18 @@ public class UserInterface implements Runnable {
         
         JLabel name = new JLabel(" Black player: " + board.getBlackPlayerName());
         upperPanel.add(name);
+        blackPlayerName = name;
         
         JLabel turn = new JLabel();
         upperPanel.add(turn);
-
         this.upperPanel = turn;
-
-//        JLabel checkState = new JLabel("");
-//        this.checkState = checkState;
-//        upperPanel.add(checkState);
-
-//        JButton reset = new JButton("Reset");
-//        reset.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                board.reset();
-//            }
-//        });
-//
-//        upperPanel.add(reset);
 
         return upperPanel;
     }
 
     /**
      * Creates a part of the interface, which contains a notification of the
-     * current stage of the game
+     * current stage of the game and the name of the white player
      *
      * @return returns a JPanel object
      */
@@ -231,13 +256,14 @@ public class UserInterface implements Runnable {
         
         JLabel name = new JLabel(" White player: " + board.getWhitePlayerName());
         lowerPanel.add(name);
+        whitePlayerName = name;
 
         this.lowerPanel = message;
         return lowerPanel;
     }
 
     /**
-     * Updates the whole interface
+     * Updates the entire interface
      */
     public void updateTable() {
         updateChessBoard();
@@ -250,19 +276,15 @@ public class UserInterface implements Runnable {
      */
     public void updateUpperPanel() {
         upperPanel.setText(" Turn: " + board.getTurns() + ", " + board.getTurnColor() + "s turn to move");
-
-//        if (board.getCheck()) {
-//            checkState.setText("CHECK!");
-//        } else {
-//            checkState.setText("");
-//        }
+        blackPlayerName.setText(" Black player: " + board.getBlackPlayerName());
     }
 
     /**
      * Updates the lower panel according to the board
      */
-    public void updateLowerPanel() {
+    public void updateLowerPanel() {        
         lowerPanel.setText(" Message: " + board.getNotification());
+        whitePlayerName.setText(" White player: " + board.getWhitePlayerName());
     }
 
     /**
@@ -286,16 +308,31 @@ public class UserInterface implements Runnable {
     }
 
     /**
-     * 
-     * @param squares
+     * Paints the squares specified in the parameter to a lighter color. Used
+     * to show the possible moves of a piece.
+     * @param squares contains the location of the squares to be painted
      */
     public void paintMovableSquares(HashSet<String> squares) {
         for (String squareId : squares) {
             Square square = chessBoard.getSquare(squareId);
             if (square != null) {
-                square.paintBackground(Color.LIGHT_GRAY);
+                square.paintBackgroundLighter();
             }
         }
+    }
+    
+    /**
+     * Shows a notification that a check-state has occurred.
+     */
+    public void showCheckMessage() {
+        JOptionPane.showMessageDialog(frame, "Check!");
+    }
+    
+    /**
+     * Shows a notification that the game has ended. Also shows the winner.
+     */
+    public void showGameOverMessage() {
+        JOptionPane.showMessageDialog(frame, "Game over, " + board.getOpposingTurnColor() + " wins!");
     }
 
 }

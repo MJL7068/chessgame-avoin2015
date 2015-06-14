@@ -192,16 +192,14 @@ public class Pieces {
     public Piece getPiece(String location) {
         return pieces.get(location);
     }
-
+    
+    /**
+     * Returns all the pieces stored as a HashMap
+     */
     public HashMap<String, Piece> getPieces() {
         return this.pieces;
     }
 
-    /**
-     *
-     * @param color
-     * @return
-     */
     public Piece getKing(String color) {
         if (color.equals("white")) {
             return whiteKing;
@@ -234,7 +232,11 @@ public class Pieces {
         System.out.println("Piece " + pieces.get(location) + " removed!");
         pieces.remove(location);
     }
-
+    
+    /**
+     * Returns the piece that was that was last removed to it's original location
+     * @param location
+     */
     public void addPiece() {
         pieces.put(removedPiece.getLocation(), removedPiece);
         removedPiece = null;
@@ -243,17 +245,11 @@ public class Pieces {
     public Piece getRemovedPiece() {
         return removedPiece;
     }
-
+    
+    /**
+     * Erases the piece that was last removed from the game from memory
+     */
     public void resetRemovedPiece() {
         removedPiece = null;
-    }
-
-    /**
-     *
-     */
-    public void printPieces() {
-        for (Piece piece : pieces.values()) {
-            System.out.println(piece);
-        }
     }
 }

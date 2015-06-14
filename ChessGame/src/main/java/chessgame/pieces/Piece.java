@@ -60,18 +60,10 @@ public abstract class Piece {
         this.row = y;
     }
 
-    /**
-     *
-     * @return
-     */
     public int getColumn() {
         return column;
     }
 
-    /**
-     *
-     * @return
-     */
     public int getRow() {
         return row;
     }    
@@ -79,17 +71,13 @@ public abstract class Piece {
     public static String[] getColumns() {
         return columns;
     }
-    
-    /**
-     *
-     * @return
-     */
+
     public String getColor() {
         return color;
     }
     
     /**
-     * 
+     * This method returns true if the move to the new location is valid
      * @param newLocation
      * @param pieces
      * @return
@@ -110,10 +98,6 @@ public abstract class Piece {
     public abstract HashSet<String> returnPossibleSquares(Pieces pieces);
     public abstract String returnNotation();
 
-    /**
-     *
-     * @return
-     */
     public abstract ImageIcon getImage();
     
     public String toString() {

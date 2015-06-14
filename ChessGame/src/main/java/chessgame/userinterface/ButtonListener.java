@@ -24,9 +24,11 @@ public class ButtonListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        // If turn is not active, call this method
          if (!board.getTurnState()) {
              board.turnFirstPart(squareId);
          } else {
+        // If turn is active, call this method
              board.turnSecondPart(squareId);
          }
     }

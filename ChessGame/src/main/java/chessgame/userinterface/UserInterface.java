@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -79,24 +80,31 @@ public class UserInterface implements Runnable {
      * @return returns the JPanel object that contains the menu
      */
     private JPanel startMenu() {
-        JPanel startMenu = new JPanel(new GridLayout(3, 2));
+        JPanel menu = new JPanel();
+        
+        JPanel startMenu = new JPanel(new GridLayout(8, 2));
 
-        JLabel playerOne = new JLabel("White players name: ");
+        JLabel playerOne = new JLabel(" White players name: ");
         final JTextField playerOneField = new JTextField();
-        JLabel playerTwo = new JLabel("Black players name: ");
+        JLabel playerTwo = new JLabel(" Black players name: ");
         final JTextField playerTwoField = new JTextField();
 
         JButton start = new JButton("Start a new game!");
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (!playerOneField.getText().isEmpty() && !playerTwoField.getText().isEmpty()) {
                 board.setWhitePlayerName(playerOneField.getText());
                 board.setBlackPlayerName(playerTwoField.getText());
                 
+                //The game is started
                 frame.setContentPane(drawBoard());
                 updateTable();
                 frame.validate();
                 frame.repaint();
+                } else {
+                    JOptionPane.showMessageDialog(frame, "You have to input player names!");
+                }
             }
         });
         
@@ -112,15 +120,19 @@ public class UserInterface implements Runnable {
                 saveState.loadGame();
             }
         });
-
+        
         startMenu.add(playerOne);
         startMenu.add(playerOneField);
         startMenu.add(playerTwo);
         startMenu.add(playerTwoField);
+        startMenu.add(new JLabel(""));
         startMenu.add(load);
+        startMenu.add(new JLabel(""));
         startMenu.add(start);
 
-        return startMenu;
+//        return startMenu;
+        menu.add(startMenu);
+        return menu;
     }
     
     /**

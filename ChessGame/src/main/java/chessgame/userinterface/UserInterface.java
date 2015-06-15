@@ -1,11 +1,11 @@
 package chessgame.userinterface;
+
 import chessgame.SaveState;
 import chessgame.board.Board;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,7 +36,7 @@ public class UserInterface implements Runnable {
     private JLabel lowerPanel;
     private JLabel whitePlayerName;
     private JLabel blackPlayerName;
-    
+
     private ArrayList<Square> squares;
     private SaveState saveState;
 
@@ -73,15 +73,16 @@ public class UserInterface implements Runnable {
 //        container.add(drawBoard());
         container.add(startMenu());
     }
-    
+
     /**
      * A component of the graphical interface that has the option to select the
      * players name, start a new game or load the last saved game
+     *
      * @return returns the JPanel object that contains the menu
      */
     private JPanel startMenu() {
         JPanel menu = new JPanel();
-        
+
         JPanel startMenu = new JPanel(new GridLayout(8, 2));
 
         JLabel playerOne = new JLabel(" White players name: ");
@@ -94,33 +95,33 @@ public class UserInterface implements Runnable {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!playerOneField.getText().isEmpty() && !playerTwoField.getText().isEmpty()) {
-                board.setWhitePlayerName(playerOneField.getText());
-                board.setBlackPlayerName(playerTwoField.getText());
-                
-                //The game is started
-                frame.setContentPane(drawBoard());
-                updateTable();
-                frame.validate();
-                frame.repaint();
+                    board.setWhitePlayerName(playerOneField.getText());
+                    board.setBlackPlayerName(playerTwoField.getText());
+
+                    //The game is started
+                    frame.setContentPane(drawBoard());
+                    updateTable();
+                    frame.validate();
+                    frame.repaint();
                 } else {
                     JOptionPane.showMessageDialog(frame, "You have to input player names!");
                 }
             }
         });
-        
+
         JButton load = new JButton("Load your last saved game!");
         load.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {                               
+            public void actionPerformed(ActionEvent e) {
                 frame.setContentPane(drawBoard());
                 updateTable();
                 frame.validate();
                 frame.repaint();
-                
+
                 saveState.loadGame();
             }
         });
-        
+
         startMenu.add(playerOne);
         startMenu.add(playerOneField);
         startMenu.add(playerTwo);
@@ -134,10 +135,11 @@ public class UserInterface implements Runnable {
         menu.add(startMenu);
         return menu;
     }
-    
+
     /**
      * A component of the graphical interface that has all the components of the
      * gameboard.
+     *
      * @return returns the JPanel object that contains the board
      */
     private JPanel drawBoard() {
@@ -152,15 +154,16 @@ public class UserInterface implements Runnable {
 
         return gameBoard;
     }
-    
+
     /**
      * A component of the graphical interface that has buttons to reset and to
      * end the game
+     *
      * @return returns the JPanel object that contains the panel
      */
     private JPanel createSurrenderPanel() {
         JPanel surrenderPanel = new JPanel(new GridLayout(2, 1));
-        
+
         //surrenderpanel is also used to store the reset-button
         JButton reset = new JButton("Reset");
         reset.setToolTipText("Reset the game");
@@ -171,39 +174,43 @@ public class UserInterface implements Runnable {
             }
         });
 
-        surrenderPanel.add(reset);      
-        
+        surrenderPanel.add(reset);
+
         JButton surrender = new JButton("Give up");
         surrender.setToolTipText("Surrender the game");
         surrender.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                board.setGameState("Game over");
-                showGameOverMessage();
-                updateLowerPanel();
+                if (JOptionPane.showConfirmDialog(frame, "Do you really want to surrender?") == 0) {
+                    board.setGameState("Game over");
+                    showGameOverMessage();
+                    updateLowerPanel();
+                }
             }
         });
-        
+
         surrenderPanel.add(surrender);
-        
+
         return surrenderPanel;
     }
-    
+
     /**
      * A component of the graphical interface that has buttons to save the game
      * and to load the last saved game
+     *
      * @return returns the JPanel object that contains the panel
      */
     private JPanel createSavePanel() {
         JPanel savePanel = new JPanel(new GridLayout(2, 1));
 
         JButton save = new JButton("Save");
-        
+
         save.setToolTipText("Save your game");
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 saveState.saveCurrentGame();
+                updateLowerPanel();
             }
         });
         savePanel.add(save);
@@ -220,10 +227,11 @@ public class UserInterface implements Runnable {
 
         return savePanel;
     }
-    
+
     /**
      * This method creates the ChessBoard-object that contains all the squares
      * of the board.
+     *
      * @return returns the JPanel object that contains the board
      */
     private JPanel createChessBoard() {
@@ -242,11 +250,11 @@ public class UserInterface implements Runnable {
      */
     public JPanel createUpperPanel() {
         JPanel upperPanel = new JPanel(new GridLayout(2, 1));
-        
+
         JLabel name = new JLabel(" Black player: " + board.getBlackPlayerName());
         upperPanel.add(name);
         blackPlayerName = name;
-        
+
         JLabel turn = new JLabel();
         upperPanel.add(turn);
         this.upperPanel = turn;
@@ -261,11 +269,11 @@ public class UserInterface implements Runnable {
      * @return returns a JPanel object
      */
     public JPanel createLowerPanel() {
-        JPanel lowerPanel = new JPanel(new GridLayout(2, 1));  
-        
+        JPanel lowerPanel = new JPanel(new GridLayout(2, 1));
+
         JLabel message = new JLabel();
         lowerPanel.add(message);
-        
+
         JLabel name = new JLabel(" White player: " + board.getWhitePlayerName());
         lowerPanel.add(name);
         whitePlayerName = name;
@@ -294,7 +302,7 @@ public class UserInterface implements Runnable {
     /**
      * Updates the lower panel according to the board
      */
-    public void updateLowerPanel() {        
+    public void updateLowerPanel() {
         lowerPanel.setText(" Message: " + board.getNotification());
         whitePlayerName.setText(" White player: " + board.getWhitePlayerName());
     }
@@ -320,8 +328,9 @@ public class UserInterface implements Runnable {
     }
 
     /**
-     * Paints the squares specified in the parameter to a lighter color. Used
-     * to show the possible moves of a piece.
+     * Paints the squares specified in the parameter to a lighter color. Used to
+     * show the possible moves of a piece.
+     *
      * @param squares contains the location of the squares to be painted
      */
     public void paintMovableSquares(HashSet<String> squares) {
@@ -332,14 +341,14 @@ public class UserInterface implements Runnable {
             }
         }
     }
-    
+
     /**
      * Shows a notification that a check-state has occurred.
      */
     public void showCheckMessage() {
         JOptionPane.showMessageDialog(frame, "Check!");
     }
-    
+
     /**
      * Shows a notification that the game has ended. Also shows the winner.
      */

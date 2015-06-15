@@ -1,1 +1,1 @@
-RNBQKBNR/PPPP1P1P/8/4P1P1/1p6/8/p1pppppp/rnbqkbnr/:4:G2 moved to G4:empty:Kissa:Koira
+RNBQKBNR/PP1PPPPP/8/2P5/4p3/8/pppp1ppp/rnbqkbnr/:3:E7 moved to E5:empty:Matti:Pekka

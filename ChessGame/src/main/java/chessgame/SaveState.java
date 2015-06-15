@@ -41,8 +41,10 @@ public class SaveState {
             FileWriter writer = new FileWriter("saves.txt");
             writer.write(notation);
             writer.close();
+            board.setNotification("The game has been saved");
         } catch (Exception e) {
             System.out.println("File not found");
+            board.setNotification("The game has not been saved");
         }
     }
 

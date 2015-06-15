@@ -11,10 +11,10 @@ public class Game {
     private UserInterface gui;
 
     public Game() {
-        this.board = new Board();
-        this.gui = new UserInterface(board);
-
-        board.setInterface(gui);
-        SwingUtilities.invokeLater(gui);
+//        this.board = new Board();
+//        this.gui = new UserInterface(board);
+//
+//        board.setInterface(gui);
+//        SwingUtilities.invokeLater(gui);
     }
 }

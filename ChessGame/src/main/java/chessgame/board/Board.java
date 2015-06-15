@@ -143,7 +143,7 @@ public class Board {
      * the squares where the piece can move
      * @param squareId tells which piece was selected
      */
-    public void turnFirstPart(String squareId) {
+    public void firstPartOfTheTurn(String squareId) {
         if (gameOver.equals("Game over")) {            
             return;
         }
@@ -163,7 +163,7 @@ public class Board {
      * Afterwards the board is updated.
      * @param squareId
      */
-    public void turnSecondPart(String squareId) {
+    public void secondPartOfTheTurn(String squareId) {
         if (move(startingPoint, squareId)) {
             pieces.move(startingPoint, squareId);
             notification = startingPoint + " moved to " + squareId;
@@ -216,6 +216,10 @@ public class Board {
             pieces.addPiece();
         }
         turns--;
+    }
+    
+    public void setNotification(String notification) {
+        this.notification = notification;
     }
 
     /**

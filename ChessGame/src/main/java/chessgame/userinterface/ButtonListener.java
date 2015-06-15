@@ -26,10 +26,10 @@ public class ButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // If turn is not active, call this method
          if (!board.getTurnState()) {
-             board.turnFirstPart(squareId);
+             board.firstPartOfTheTurn(squareId);
          } else {
         // If turn is active, call this method
-             board.turnSecondPart(squareId);
+             board.secondPartOfTheTurn(squareId);
          }
     }
     

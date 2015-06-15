@@ -229,7 +229,6 @@ public class Pieces {
             blackKing = null;
         }
 
-        System.out.println("Piece " + pieces.get(location) + " removed!");
         pieces.remove(location);
     }
     

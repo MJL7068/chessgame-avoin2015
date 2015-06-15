@@ -55,4 +55,7 @@ n. 4 tuntia. Nyt peli päättyy kun toinen pelaajista painaa Give up-painiketta.
 Ongelmana testien teossa on se, että Board-luokka päivittää isossa osassa metodejaan käyttöliittymää. Kun yritän ajaa näitä testejä, ohjelma valittaa siitä, ettei käyttöliittymä-oliota ole olemassa, vaikka se onkin luotu. Ohjeiden mukaan käyttöliittymää ei tarvitse testata, mutta tämä aiheuttaa sen että suurintaa osaa Board-luokan metodeista ei ole testattu.
 
 14.6 2015
-n. 6 tuntia. Nyt ohjelma pystyy tallentamaan pelitilanteen Stringinä tekstitiedostoon ja lataamaan sen myöhemmin. Ohjelma pystyy pitämään muistissa vain yhtä aikaisempaa pelitilannetta. Lisäksi ohjelmoin uuden alkuruudun, joka mahdollistaa pelaajan nimien syöttämisen ja aikaisemman tallennuksen lataamisen. Tämän lisäksi päivitin Javadocia, kirjoitin rakennekuvauksen ja tein koodikatselmuksen
+n. 6 tuntia. Nyt ohjelma pystyy tallentamaan pelitilanteen Stringinä tekstitiedostoon ja lataamaan sen myöhemmin. Ohjelma pystyy pitämään muistissa vain yhtä aikaisempaa pelitilannetta. Lisäksi ohjelmoin uuden alkuruudun, joka mahdollistaa pelaajan nimien syöttämisen ja aikaisemman tallennuksen lataamisen. Tämän lisäksi päivitin Javadocia, kirjoitin rakennekuvauksen ja tein koodikatselmuksen.
+
+15.6 2015
+n. 1 tunti. Viimeistelin ohjelmaa demoa varten.

@@ -53,3 +53,6 @@ n. 4 tuntia. Aloitin ohjelmoimaan tallennusmahdollisuutta. Nyt ohjelma pystyy ta
 n. 4 tuntia. Nyt peli päättyy kun toinen pelaajista painaa Give up-painiketta. Tilanteessa jossa on shakkimatti mikään pelaajan liikkeistä ei ole sallittu, vaan ainoa vaihtoehto on luovuttaa. Peli ei itse tunnista shakkimattia. Muokkasin myös käyttöliittymää. Nyt siinä näkyy pelaajien syöttämät nimet. Tein myös lisää testejä ja päivitin Javadocia.
 
 Ongelmana testien teossa on se, että Board-luokka päivittää isossa osassa metodejaan käyttöliittymää. Kun yritän ajaa näitä testejä, ohjelma valittaa siitä, ettei käyttöliittymä-oliota ole olemassa, vaikka se onkin luotu. Ohjeiden mukaan käyttöliittymää ei tarvitse testata, mutta tämä aiheuttaa sen että suurintaa osaa Board-luokan metodeista ei ole testattu.
+
+14.6 2015
+n. 6 tuntia. Nyt ohjelma pystyy tallentamaan pelitilanteen Stringinä tekstitiedostoon ja lataamaan sen myöhemmin. Ohjelma pystyy pitämään muistissa vain yhtä aikaisempaa pelitilannetta. Lisäksi ohjelmoin uuden alkuruudun, joka mahdollistaa pelaajan nimien syöttämisen ja aikaisemman tallennuksen lataamisen. Tämän lisäksi päivitin Javadocia, kirjoitin rakennekuvauksen ja tein koodikatselmuksen

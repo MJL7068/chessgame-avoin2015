@@ -1,1 +1,1 @@
-RNBQKBNR/PP1PPPPP/8/2P5/4p3/8/pppp1ppp/rnbqkbnr/:3:E7 moved to E5:empty:Matti:Pekka
+RNBQ1BNR/PPPPKPPP/8/4P3/3p4/8/ppp1pppp/rnbqkbnr/:4:E1 moved to E2:empty:Matti:Pekka

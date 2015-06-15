@@ -113,12 +113,15 @@ public class UserInterface implements Runnable {
         load.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (saveState.isLoadAvaivable()) {
                 frame.setContentPane(drawBoard());
                 updateTable();
                 frame.validate();
                 frame.repaint();
-
                 saveState.loadGame();
+                }
+
+//                saveState.loadGame();
             }
         });
 

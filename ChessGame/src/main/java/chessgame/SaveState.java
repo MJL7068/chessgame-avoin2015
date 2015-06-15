@@ -16,6 +16,7 @@ public class SaveState {
 
     private Board board;
     private ArrayList<String> loadStates;
+    private String loadState;
 
     /**
      * This class is used to save to information about the pieces in play and
@@ -54,23 +55,30 @@ public class SaveState {
      */
     public void loadGame() {
 //        board.reset(loadStates.get(loadStates.size() - 1));
+        board.reset(loadState);
+    }
+    
+    public boolean isLoadAvaivable() {
         File file = new File("saves.txt");
         String loadState = "";
 
         try {
             Scanner reader = new Scanner(file);
             loadState = reader.nextLine();
+            this.loadState = loadState;
             reader.close();
         } catch (Exception e) {
-            System.out.println("File not found");
+//            System.out.println("File not found");
         }
 
         if (loadState.equals("")) {
-            System.out.println("The file is empty!");
+//            System.out.println("The file is empty!");
             JOptionPane.showMessageDialog(null, "The file is empty!");
-            return;
+            return false;
+        } else {
+//        board.reset(loadState);
+        return true;
         }
-        board.reset(loadState);
     }
 
     /**

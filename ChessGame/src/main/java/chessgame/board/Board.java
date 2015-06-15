@@ -175,6 +175,9 @@ public class Board {
         startingPoint = "";
 
         gui.updateTable();
+        if (notification.equals("Check!")) {
+            gui.showCheckMessage();
+        }
     }
     
     /**
@@ -196,7 +199,7 @@ public class Board {
                 check = true;
                 notification = "Check!";                
                 gui.updateUpperPanel();
-                gui.showCheckMessage();
+//                gui.showCheckMessage();
             }
         }
         

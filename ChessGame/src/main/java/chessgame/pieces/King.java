@@ -9,7 +9,7 @@ public class King extends Piece {
     public King(int column, int row, String color) {
         super(column, row, color);
     }
-    
+
     @Override
     public ImageIcon getImage() {
         ImageIcon image;
@@ -22,7 +22,7 @@ public class King extends Piece {
         }
         return image;
     }
-    
+
     public String toString() {
         return "King, " + super.toString();
     }
@@ -37,20 +37,20 @@ public class King extends Piece {
         for (int i = 0; i < 3; i++) {
             int index = (column - 2 + i);
             if (index >= 0 && index < 8) {
-            String upperSquare = columns[index] + "" + (row + 1);
-            if (pieces.getPiece(upperSquare) == null || !pieces.getPiece(upperSquare).getColor().equals(super.getColor())) {
-                squares.add(upperSquare);
-            }
+                String upperSquare = columns[index] + "" + (row + 1);
+                if (pieces.getPiece(upperSquare) == null || !pieces.getPiece(upperSquare).getColor().equals(super.getColor())) {
+                    squares.add(upperSquare);
+                }
 
-            String square = columns[index] + "" + row;
-            if (pieces.getPiece(square) == null || !pieces.getPiece(square).getColor().equals(super.getColor())) {
-                squares.add(square);
-            }
+                String square = columns[index] + "" + row;
+                if (pieces.getPiece(square) == null || !pieces.getPiece(square).getColor().equals(super.getColor())) {
+                    squares.add(square);
+                }
 
-            String lowerSquare = columns[index] + "" + (row - 1);
-            if (pieces.getPiece(lowerSquare) == null || !pieces.getPiece(lowerSquare).getColor().equals(super.getColor())) {
-                squares.add(lowerSquare);
-            }
+                String lowerSquare = columns[index] + "" + (row - 1);
+                if (pieces.getPiece(lowerSquare) == null || !pieces.getPiece(lowerSquare).getColor().equals(super.getColor())) {
+                    squares.add(lowerSquare);
+                }
             }
         }
 
@@ -65,5 +65,5 @@ public class King extends Piece {
             return "k";
         }
     }
-    
+
 }

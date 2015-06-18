@@ -9,12 +9,6 @@ import javax.swing.ImageIcon;
  */
 public class Rook extends Piece {
     
-    /**
-     *
-     * @param column
-     * @param row
-     * @param color
-     */
     public Rook(int column, int row, String color) {
         super(column, row, color);
     }

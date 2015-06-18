@@ -44,7 +44,8 @@ public class UserInterface implements Runnable {
 
     /**     
      *
-     * @param board
+     * @param board UserInterface gets the location of all the pieces
+     * and other information on the game from Board-class.
      */
     public UserInterface(Board board) {
         this.board = board;
@@ -95,8 +96,8 @@ public class UserInterface implements Runnable {
             public void actionPerformed(ActionEvent e) {
                 if (playerOneField.getText().isEmpty() || playerTwoField.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(frame, "You have to input player names!");
-                } else if (playerOneField.getText().contains(":") || playerTwoField.getText().contains(":")) {
-                    JOptionPane.showMessageDialog(frame, "Names can only contain characters and numbers");
+                } else if (!playerOneField.getText().matches("[a-zA-Z0-9]*") || !playerTwoField.getText().matches("[a-zA-Z0-9]*")) {
+                    JOptionPane.showMessageDialog(frame, "Names can only contain characters and numbers!");
                 } else {
                     board.setWhitePlayerName(playerOneField.getText());
                     board.setBlackPlayerName(playerTwoField.getText());

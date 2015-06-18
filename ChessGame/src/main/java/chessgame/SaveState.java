@@ -21,7 +21,7 @@ public class SaveState {
 
     /**
      *
-     * @param board
+     * @param board SaveState gets the locations of pieces from the Board-class
      */
     public SaveState(Board board) {
         this.board = board;
@@ -33,7 +33,7 @@ public class SaveState {
      * Forsyth-Edwards notation
      */
     public void saveCurrentGame() {
-        String notation = getFONNotation() + ":" + board.getTurns() + ":" + board.getNotification() + ":"
+        String notation = getFonNotation() + ":" + board.getTurns() + ":" + board.getNotification() + ":"
                 + board.getGameOver() + ":" + board.getWhitePlayerName() + ":" + board.getBlackPlayerName();
 
         try {
@@ -61,11 +61,11 @@ public class SaveState {
             board.reset(loadState);
         }
     }
-    
+
     /**
      * This method return true if a saved data can be loaded from the file
-     * 
-     * @return
+     *
+     * @return returns true if there is a save data available
      */
     public boolean isLoadAvaivable() {
         File file = new File("saves.txt");
@@ -78,6 +78,7 @@ public class SaveState {
             this.loadState = loadState;
             reader.close();
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Loading operation failed!");
         }
         if (loadState.equals("")) {
             JOptionPane.showMessageDialog(null, "The file is empty!");
@@ -91,12 +92,12 @@ public class SaveState {
      * This method return a single line-string that describes the current board
      * position of the game
      *
-     * @return
+     * @return the String in FON notation
      */
-    public String getFONNotation() {
+    public String getFonNotation() {
         String[] columns = new String[]{"A", "B", "C", "D", "E", "F", "G", "H"};
 
-        String FONNotation = "";
+        String fonNotation = "";
 
         int i = 0;
         for (int y = 1; y <= 8; y++) {
@@ -106,19 +107,19 @@ public class SaveState {
                     i++;
                 } else {
                     if (i > 0) {
-                        FONNotation += i;
+                        fonNotation += i;
                     }
-                    FONNotation += piece.returnNotation();
+                    fonNotation += piece.returnNotation();
                     i = 0;
                 }
             }
             if (i > 0) {
-                FONNotation += i;
+                fonNotation += i;
             }
-            FONNotation += "/";
+            fonNotation += "/";
             i = 0;
         }
 
-        return FONNotation;
+        return fonNotation;
     }
 }

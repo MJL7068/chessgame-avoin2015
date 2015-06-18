@@ -18,7 +18,8 @@ public class ButtonListener implements ActionListener {
     /**
      * 
      * @param squareId this parameter tells what are the squares coordinates
-     * @param board
+     * @param board ButtonListener sends the method call to board when the button
+     * is pressed
      */
     public ButtonListener(String squareId, Board board) {
         this.squareId = squareId;

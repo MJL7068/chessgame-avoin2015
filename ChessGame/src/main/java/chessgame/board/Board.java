@@ -131,7 +131,7 @@ public class Board {
      *
      * @param location the location of the piece in question
      * @param color the color that the piece is compared to
-     * @return
+     * @return returns true if the color of the piece is the same as parameter
      */
     public boolean checkForColor(String location, String color) {
         if (!lookForPiece(location)) {
@@ -172,7 +172,7 @@ public class Board {
      * waiting for a move order. The method will check if the move is valid and
      * then perform the move. Afterwards the board is updated.
      *
-     * @param squareId
+     * @param squareId the id of the button that was pushed on the interface
      */
     public void secondPartOfTheTurn(String squareId) {
         if (move(startingPoint, squareId)) {
@@ -225,7 +225,8 @@ public class Board {
     /**
      * This method cancel the movement of the piece and changes it back.
      *
-     * @param id
+     * @param id the location of the piece that will be returned back to its
+     * original place
      */
     public void cancelTurn(String id) {
         pieces.move(id, startingPoint);
@@ -246,7 +247,7 @@ public class Board {
     /**
      * Used to attach the gui class to board.
      *
-     * @param gui
+     * @param gui the UserInterface class that is to be attached
      */
     public void setInterface(UserInterface gui) {
         this.gui = gui;
@@ -277,8 +278,8 @@ public class Board {
     /**
      * Returns the piece from the location
      *
-     * @param location
-     * @return
+     * @param location the location of the piece
+     * @return return a Piece object from the location
      */
     public Piece getPiece(String location) {
         return pieces.getPiece(location);
@@ -287,7 +288,7 @@ public class Board {
     /**
      * Returns true if the turn is underway
      *
-     * @return
+     * @return if a piece has been selected in this turn, this will be true
      */
     public boolean getTurnState() {
         return isTurnActive;
@@ -296,7 +297,7 @@ public class Board {
     /**
      * Returns the starting point of a turn
      *
-     * @return
+     * @return returns the starting point of the turn
      */
     public String getStartingPoint() {
         return startingPoint;
@@ -313,7 +314,7 @@ public class Board {
     /**
      * Returns the color of the opponent
      *
-     * @return
+     * @return the color of the opposing team during this turn
      */
     public String getOpposingTurnColor() {
         if (turns % 2 != 0) {

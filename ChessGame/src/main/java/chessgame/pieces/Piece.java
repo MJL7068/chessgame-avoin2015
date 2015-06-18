@@ -19,9 +19,9 @@ public abstract class Piece {
 
     /**
      *
-     * @param x
-     * @param y
-     * @param color
+     * @param x the column of this piece during its creation
+     * @param y the row of this piece during its creation
+     * @param color the color of this piece
      */
     public Piece(int x, int y, String color) {
         this.column = x;
@@ -32,7 +32,7 @@ public abstract class Piece {
     /**
      * Changes the row and column of Piece according to parameter.
      *
-     * @param newPlace
+     * @param newPlace the location that the piece is to be moved
      */
     public void move(String newPlace) {
         int newColumn = 0, newRow;
@@ -51,7 +51,7 @@ public abstract class Piece {
     /**
      * Returns the location as a string
      *
-     * @return
+     * @return the location of this piece
      */
     public String getLocation() {
         return columns[column - 1] + row;
@@ -80,9 +80,10 @@ public abstract class Piece {
     /**
      * This method returns true if the move to the new location is valid
      *
-     * @param newLocation
-     * @param pieces
-     * @return
+     * @param newLocation the location where the piece is to be moved
+     * @param pieces the piece checks if the move is valid based on the locations
+     * of other pieces on the board
+     * @return returns true if the move is possible
      */
     public boolean isValidMove(String newLocation, Pieces pieces) {
         HashSet<String> possibleMovementOptions = returnPossibleSquares(pieces);
@@ -100,8 +101,18 @@ public abstract class Piece {
      */
     public abstract HashSet<String> returnPossibleSquares(Pieces pieces);
 
+    /**
+     * This method returns the single character notation of this piece used when
+     * the game is saved
+     * @return returns the single character notation
+     */
     public abstract String returnNotation();
-
+    
+    /**
+     * This method returns the ImageIcon of this piece based on it's subclass
+     * and color. Used by the graphical interface.
+     * @return returns the ImageIcon-representation of this piece
+     */
     public abstract ImageIcon getImage();
 
     public String toString() {

@@ -55,7 +55,7 @@ public class Square {
     /**
      * Returns the JPanel representation of this class.
      *
-     * @return
+     * @return returns this class as a JPanel
      */
     public JPanel getSquare() {
         return square;
@@ -69,7 +69,8 @@ public class Square {
      * This method causes the square to update itself based on the information
      * found in the board class
      *
-     * @param board
+     * @param board uses the board to see if there is a piece on this particular
+     * square
      */
     public void update(Board board) {
         JButton button = getButton();
@@ -113,7 +114,7 @@ public class Square {
      * Returns the JButton-object that is stored in this class. The JButton is
      * pressed show which buttons you want to move and where.
      *
-     * @return
+     * @return returns the JButton stored in this class
      */
     public JButton getButton() {
         return button;

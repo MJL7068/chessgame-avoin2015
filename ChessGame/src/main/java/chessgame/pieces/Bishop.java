@@ -10,12 +10,6 @@ import javax.swing.ImageIcon;
  */
 public class Bishop extends Piece {
 
-    /**
-     *
-     * @param column
-     * @param row
-     * @param color
-     */
     public Bishop(int column, int row, String color) {
         super(column, row, color);
     }

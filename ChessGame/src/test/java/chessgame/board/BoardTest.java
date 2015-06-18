@@ -21,7 +21,6 @@ public class BoardTest {
         board = new Board();
         UserInterface gui = new UserInterface(board);
         board.setInterface(gui);
-        SwingUtilities.invokeLater(gui);
     }
     
 //    @Test

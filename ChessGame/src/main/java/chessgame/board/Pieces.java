@@ -35,26 +35,27 @@ public class Pieces {
     /**
      * Constructor can be given a parameter to create a new set of pieces. Used
      * when loading a game from memory.
+     * @param fonNotation the string that contains all the pieces
      */
-    public Pieces(String FONNotation) {
+    public Pieces(String fonNotation) {
         this.pieces = new HashMap<String, Piece>();
 
         this.whiteKing = null;
         this.blackKing = null;
 
-        generatePiecesAccordingToFONNotation(FONNotation);
+        generatePiecesAccordingToFONNotation(fonNotation);
     }
 
     /**
      * Generates all the pieces stored in the parameter
      *
-     * @param FONNotation this string stores all the pieces on the board in a
+     * @param fonNotation this string stores all the pieces on the board in a
      * given state for example string
      * RNBQKBNR/PPPPPPPP/8/8/8/8/pppppppp/rnbqkbnr/ stores all the pieces from
      * the start of an ordinary chess game.
      */
-    public void generatePiecesAccordingToFONNotation(String FONNotation) {
-        String[] parts = FONNotation.split("/");
+    public void generatePiecesAccordingToFONNotation(String fonNotation) {
+        String[] parts = fonNotation.split("/");
 
         for (int row = 0; row < parts.length; row++) {
             int column = 0;
@@ -169,7 +170,7 @@ public class Pieces {
     /**
      * Removes a piece from location
      *
-     * @param location
+     * @param location the location of the piece to be removed
      */
     public void removePiece(String location) {
         if (pieces.get(location) == null) {

@@ -26,7 +26,7 @@ public class ChessBoard {
     /**
      * The parameter creates 8 x 8 squares
      *
-     * @param board
+     * @param board ChessBoard uses board the see the location of all the pieces
      */
     public ChessBoard(Board board) {
         this.board = board;
@@ -44,7 +44,6 @@ public class ChessBoard {
      * This method creates all the squares, gives them their id's and then
      * stores them.
      *
-     * @return
      */
     public void generateSquares() {
         final String[] columns = new String[]{"A", "B", "C", "D", "E", "F", "G", "H"};
@@ -73,7 +72,7 @@ public class ChessBoard {
     /**
      * Returns the JPanel representation of this class.
      *
-     * @return
+     * @return returns this class as a JPanel
      */
     public JPanel getChessBoard() {
         return chessBoard;
@@ -89,8 +88,8 @@ public class ChessBoard {
     /**
      * Returns the square stored in the ChessBoard-object
      *
-     * @param id
-     * @return
+     * @param id the location of this square
+     * @return returns the Square-object
      */
     public Square getSquare(String id) {
         return squaresById.get(id);

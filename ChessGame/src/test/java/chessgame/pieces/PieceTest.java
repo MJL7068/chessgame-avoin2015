@@ -1,5 +1,6 @@
 package chessgame.pieces;
 
+import chessgame.board.Pieces;
 import chessgame.pieces.*;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -10,6 +11,7 @@ import static org.junit.Assert.*;
 
 public class PieceTest {
     Piece piece;
+    Pieces pieces;
     
     public PieceTest() {
     }
@@ -17,6 +19,7 @@ public class PieceTest {
     @Before
     public void setUp() {
         piece = new Pawn(1, 2, "white");
+        pieces = new Pieces();
     }
     
     @Test
@@ -37,5 +40,11 @@ public class PieceTest {
         
         piece.move("C4");
         assertEquals("C4", piece.getLocation());
+    }
+    
+    @Test
+    public void isValidMoveReturnsTrueAndFalseCorrectly() {
+        assertTrue(true == piece.isValidMove("A3", pieces));
+        assertTrue(false == piece.isValidMove("D5", pieces));
     }
 }

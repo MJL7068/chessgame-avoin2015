@@ -4,29 +4,28 @@ import chessgame.board.Board;
 import chessgame.pieces.Piece;
 import java.io.File;
 import java.io.FileWriter;
-import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 /**
+ * This class is used to save to information about the pieces in play and other
+ * information about the game like the turn number
  *
  * @author mattilei
  */
 public class SaveState {
 
     private Board board;
-    private ArrayList<String> loadStates;
+//    private ArrayList<String> loadStates;
     private String loadState;
 
     /**
-     * This class is used to save to information about the pieces in play and
-     * other information about the game like the turn number
      *
      * @param board
      */
     public SaveState(Board board) {
         this.board = board;
-        this.loadStates = new ArrayList<String>();
+//        this.loadStates = new ArrayList<String>();
     }
 
     /**
@@ -36,17 +35,19 @@ public class SaveState {
     public void saveCurrentGame() {
         String notation = getFONNotation() + ":" + board.getTurns() + ":" + board.getNotification() + ":"
                 + board.getGameOver() + ":" + board.getWhitePlayerName() + ":" + board.getBlackPlayerName();
-        loadStates.add(notation);
 
         try {
             FileWriter writer = new FileWriter("saves.txt");
+
             writer.write(notation);
             writer.close();
+
             board.setNotification("The game has been saved");
         } catch (Exception e) {
-            System.out.println("File not found");
             board.setNotification("The game has not been saved");
         }
+
+        this.loadState = notation;
     }
 
     /**
@@ -54,12 +55,21 @@ public class SaveState {
      * information stored
      */
     public void loadGame() {
-//        board.reset(loadStates.get(loadStates.size() - 1));
-        board.reset(loadState);
+        if (loadState == null) {
+            JOptionPane.showMessageDialog(null, "The file is empty");
+        } else {
+            board.reset(loadState);
+        }
     }
     
+    /**
+     * This method return true if a saved data can be loaded from the file
+     * 
+     * @return
+     */
     public boolean isLoadAvaivable() {
         File file = new File("saves.txt");
+
         String loadState = "";
 
         try {
@@ -68,16 +78,12 @@ public class SaveState {
             this.loadState = loadState;
             reader.close();
         } catch (Exception e) {
-//            System.out.println("File not found");
         }
-
         if (loadState.equals("")) {
-//            System.out.println("The file is empty!");
             JOptionPane.showMessageDialog(null, "The file is empty!");
             return false;
         } else {
-//        board.reset(loadState);
-        return true;
+            return true;
         }
     }
 

@@ -20,6 +20,8 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 /**
+ * Generates the graphical user interface. Methods are used to alter different
+ * components within it.
  *
  * @author mattilei
  */
@@ -40,9 +42,7 @@ public class UserInterface implements Runnable {
     private ArrayList<Square> squares;
     private SaveState saveState;
 
-    /**
-     * Generates the graphical user interface. Methods are used to alter
-     * different components within it.
+    /**     
      *
      * @param board
      */
@@ -70,7 +70,6 @@ public class UserInterface implements Runnable {
     }
 
     private void createComponents(Container container) {
-//        container.add(drawBoard());
         container.add(startMenu());
     }
 
@@ -94,7 +93,11 @@ public class UserInterface implements Runnable {
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!playerOneField.getText().isEmpty() && !playerTwoField.getText().isEmpty()) {
+                if (playerOneField.getText().isEmpty() || playerTwoField.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(frame, "You have to input player names!");
+                } else if (playerOneField.getText().contains(":") || playerTwoField.getText().contains(":")) {
+                    JOptionPane.showMessageDialog(frame, "Names can only contain characters and numbers");
+                } else {
                     board.setWhitePlayerName(playerOneField.getText());
                     board.setBlackPlayerName(playerTwoField.getText());
 
@@ -103,8 +106,6 @@ public class UserInterface implements Runnable {
                     updateTable();
                     frame.validate();
                     frame.repaint();
-                } else {
-                    JOptionPane.showMessageDialog(frame, "You have to input player names!");
                 }
             }
         });
@@ -113,13 +114,14 @@ public class UserInterface implements Runnable {
         load.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (saveState.isLoadAvaivable()) {
-                frame.setContentPane(drawBoard());
-                updateTable();
-                frame.validate();
-                frame.repaint();
-                saveState.loadGame();
-                }
+//                if (saveState.isLoadAvaivable()) {
+//                frame.setContentPane(drawBoard());
+//                updateTable();
+//                frame.validate();
+//                frame.repaint();
+//                saveState.loadGame();
+//                }
+                loadGame();
 
 //                saveState.loadGame();
             }
@@ -223,12 +225,27 @@ public class UserInterface implements Runnable {
         load.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                saveState.loadGame();
+                loadGame();
             }
         });
         savePanel.add(load);
 
         return savePanel;
+    }
+    
+    /**
+     * This method checks if there is a load available and then loads it if that
+     * is the case
+     *
+     */
+    public void loadGame() {
+        if (saveState.isLoadAvaivable()) {
+            frame.setContentPane(drawBoard());
+            updateTable();
+            frame.validate();
+            frame.repaint();
+            saveState.loadGame();
+        }
     }
 
     /**

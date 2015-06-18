@@ -1,6 +1,7 @@
 package chessgame.pieces;
 
 import chessgame.board.Pieces;
+import javax.swing.ImageIcon;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -46,6 +47,14 @@ public class QueenTest {
 
         assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("C3"));
         assertTrue(true == pieces.getPiece("D4").returnPossibleSquares(pieces).contains("E3"));
+        
+        pieces.move("D4", "A3");
+        pieces.removePiece("A7");
+        assertTrue(true == pieces.getPiece("A3").returnPossibleSquares(pieces).contains("A8"));
+        
+        pieces.move("D8", "H5");
+        pieces.removePiece("H2");
+        assertTrue(true == pieces.getPiece("H5").returnPossibleSquares(pieces).contains("H1"));
     }
 
     @Test
@@ -60,7 +69,7 @@ public class QueenTest {
         pieces.removePiece("H1");
         pieces.removePiece("B7");
         pieces.removePiece("E2");
-        pieces.removePiece("E7");
+//        pieces.removePiece("E7");
         
         //Enemy pieces moved to position
         pieces.move("A7", "B1");
@@ -78,10 +87,20 @@ public class QueenTest {
         assertTrue(true == pieces.getPiece("E4").returnPossibleSquares(pieces).contains("A4"));
         assertTrue(true == pieces.getPiece("E4").returnPossibleSquares(pieces).contains("H4"));
     }
+    
     @Test
     public void returNotationWorks() {
         assertEquals("Q", pieces.getPiece("D1").returnNotation());
         assertEquals("q", pieces.getPiece("D8").returnNotation());
     }
+    
+    @Test
+    public void getImageWorks() {
+        ImageIcon whiteQueenImage = pieces.getPiece("D1").getImage();
+        assertEquals("queenWhite.png", whiteQueenImage.getDescription());
+        
+        ImageIcon blackQueenImage = pieces.getPiece("D8").getImage();
+        assertEquals("queenBlack.png", blackQueenImage.getDescription());
+    } 
     
 }

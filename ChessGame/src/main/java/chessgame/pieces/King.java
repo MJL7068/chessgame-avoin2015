@@ -15,8 +15,10 @@ public class King extends Piece {
         ImageIcon image;
         if (this.getColor().equals("white")) {
             image = new ImageIcon(getClass().getResource("/images/kingWhite.png"));
+            image.setDescription("kingWhite.png");
         } else {
             image = new ImageIcon(getClass().getResource("/images/kingBlack.png"));
+            image.setDescription("kingBlack.png");
         }
         return image;
     }
@@ -33,19 +35,22 @@ public class King extends Piece {
         int row = super.getRow();
 
         for (int i = 0; i < 3; i++) {
-            String upperSquare = columns[column - 2 + i] + "" + (row + 1);
+            int index = (column - 2 + i);
+            if (index >= 0 && index < 8) {
+            String upperSquare = columns[index] + "" + (row + 1);
             if (pieces.getPiece(upperSquare) == null || !pieces.getPiece(upperSquare).getColor().equals(super.getColor())) {
                 squares.add(upperSquare);
             }
 
-            String square = columns[column - 2 + i] + "" + row;
+            String square = columns[index] + "" + row;
             if (pieces.getPiece(square) == null || !pieces.getPiece(square).getColor().equals(super.getColor())) {
                 squares.add(square);
             }
 
-            String lowerSquare = columns[column - 2 + i] + "" + (row - 1);
+            String lowerSquare = columns[index] + "" + (row - 1);
             if (pieces.getPiece(lowerSquare) == null || !pieces.getPiece(lowerSquare).getColor().equals(super.getColor())) {
                 squares.add(lowerSquare);
+            }
             }
         }
 

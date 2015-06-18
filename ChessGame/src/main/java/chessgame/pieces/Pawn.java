@@ -15,8 +15,10 @@ public class Pawn extends Piece {
         ImageIcon image;
         if (this.getColor().equals("white")) {
             image = new ImageIcon(getClass().getResource("/images/pawnWhite.png"));
+            image.setDescription("pawnWhite.png");
         } else {
             image = new ImageIcon(getClass().getResource("/images/pawnBlack.png"));
+            image.setDescription("pawnBlack.png");
         }
         return image;
     }

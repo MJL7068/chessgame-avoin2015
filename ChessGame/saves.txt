@@ -1,1 +1,1 @@
-RNBQ1BNR/PPPPKPPP/8/4P3/3p4/8/ppp1pppp/rnbqkbnr/:4:E1 moved to E2:empty:Matti:Pekka
+RNBQKBNR/PPPPPPPP/8/8/8/8/pppppppp/rnbqkbnr/:1::empty:qw:ee

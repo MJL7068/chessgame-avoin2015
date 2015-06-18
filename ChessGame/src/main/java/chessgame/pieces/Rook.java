@@ -24,8 +24,10 @@ public class Rook extends Piece {
         ImageIcon image;
         if (this.getColor().equals("white")) {
             image = new ImageIcon(getClass().getResource("/images/rookWhite.png"));
+            image.setDescription("rookWhite.png");
         } else {
             image = new ImageIcon(getClass().getResource("/images/rookBlack.png"));
+            image.setDescription("rookBlack.png");
         }
         return image;
     }

@@ -1,22 +1,25 @@
 package chessgame.pieces;
+
 import chessgame.board.Pieces;
 import java.util.HashSet;
 import javax.swing.ImageIcon;
 
 /**
+ * Piece is a abstract class. Every subclass of Piece has a row, a column, a
+ * color and id based on the location
  *
  * @author mattilei
  */
 public abstract class Piece {
+
     private static final String[] columns = {"A", "B", "C", "D", "E", "F", "G", "H"};
     private int column;
     private int row;
     private String color;
-    
+
     /**
-     * Piece is a abstract class. Every subclass of Piece has a row, a column, a color and
-     * id based on the location
-     * @param x 
+     *
+     * @param x
      * @param y
      * @param color
      */
@@ -25,27 +28,29 @@ public abstract class Piece {
         this.row = y;
         this.color = color;
     }
-    
+
     /**
      * Changes the row and column of Piece according to parameter.
+     *
      * @param newPlace
      */
     public void move(String newPlace) {
         int newColumn = 0, newRow;
-        
+
         for (int i = 0; i < columns.length; i++) {
             if (("" + newPlace.charAt(0)).equals(columns[i])) {
                 newColumn = i + 1;
             }
         }
         newRow = Integer.parseInt("" + newPlace.charAt(1));
-        
+
         setColumn(newColumn);
         setRow(newRow);
     }
-    
+
     /**
      * Returns the location as a string
+     *
      * @return
      */
     public String getLocation() {
@@ -66,18 +71,15 @@ public abstract class Piece {
 
     public int getRow() {
         return row;
-    }    
-
-    public static String[] getColumns() {
-        return columns;
     }
 
     public String getColor() {
         return color;
     }
-    
+
     /**
      * This method returns true if the move to the new location is valid
+     *
      * @param newLocation
      * @param pieces
      * @return
@@ -89,17 +91,19 @@ public abstract class Piece {
         }
         return false;
     }
-    
+
     /**
      *
      * @param pieces contains all the pieces on the board
-     * @return a HashSet that contains the ids of all the squares where the piece can move to
+     * @return a HashSet that contains the ids of all the squares where the
+     * piece can move to
      */
     public abstract HashSet<String> returnPossibleSquares(Pieces pieces);
+
     public abstract String returnNotation();
 
     public abstract ImageIcon getImage();
-    
+
     public String toString() {
         return color + ": " + getLocation();
     }

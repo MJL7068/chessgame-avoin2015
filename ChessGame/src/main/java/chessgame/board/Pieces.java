@@ -5,6 +5,9 @@ import chessgame.pieces.*;
 import java.util.HashMap;
 
 /**
+ * This class stores all the pieces. Constructor generates all the pieces used
+ * in the game. Methods are used to return and remove pieces and to alter the
+ * state of the pieces in play.
  *
  * @author mattilei
  */
@@ -18,9 +21,7 @@ public class Pieces {
     private Piece removedPiece;
 
     /**
-     * This class stores all the pieces. Constructor generates all the pieces
-     * used in the game. Methods are used to return and remove pieces and to
-     * alter the state of the pieces in play.
+     * The constructor creates the pieces.
      */
     public Pieces() {
         this.pieces = new HashMap<String, Piece>();
@@ -28,10 +29,13 @@ public class Pieces {
         this.whiteKing = null;
         this.blackKing = null;
 
-        generatePieces("white");
-        generatePieces("black");
+        generatePiecesAccordingToFONNotation("RNBQKBNR/PPPPPPPP/8/8/8/8/pppppppp/rnbqkbnr/");
     }
-
+    
+    /**
+     * Constructor can be given a parameter to create a new set of pieces. Used
+     * when loading a game from memory.
+     */
     public Pieces(String FONNotation) {
         this.pieces = new HashMap<String, Piece>();
 
@@ -42,60 +46,12 @@ public class Pieces {
     }
 
     /**
-     * Generates a set of pieces for one player
-     *
-     * @param color is used to set which color the pieces are
-     */
-    public void generatePieces(String color) {
-        int firstRow = 0, secondRow = 0;
-
-        if (color.equals("white")) {
-            firstRow = 1;
-            secondRow = 2;
-        } else if (color.equals("black")) {
-            firstRow = 8;
-            secondRow = 7;
-        }
-
-        Rook rookOne = new Rook(1, firstRow, color);
-        pieces.put(rookOne.getLocation(), rookOne);
-        Rook rookTwo = new Rook(8, firstRow, color);
-        pieces.put(rookTwo.getLocation(), rookTwo);
-
-        Knight knightOne = new Knight(2, firstRow, color);
-        pieces.put(knightOne.getLocation(), knightOne);
-        Knight knightTwo = new Knight(7, firstRow, color);
-        pieces.put(knightTwo.getLocation(), knightTwo);
-
-        Bishop bishopOne = new Bishop(3, firstRow, color);
-        pieces.put(bishopOne.getLocation(), bishopOne);
-        Bishop bishopTwo = new Bishop(6, firstRow, color);
-        pieces.put(bishopTwo.getLocation(), bishopTwo);
-
-        Queen queen = new Queen(4, firstRow, color);
-        pieces.put(queen.getLocation(), queen);
-
-        King king = new King(5, firstRow, color);
-        pieces.put(king.getLocation(), king);
-        if (color.equals("white")) {
-            this.whiteKing = king;
-        } else if (color.equals("black")) {
-            this.blackKing = king;
-        }
-
-        for (int i = 1; i <= 8; i++) {
-            Pawn pawn = new Pawn(i, secondRow, color);
-            pieces.put(pawn.getLocation(), pawn);
-        }
-
-    }
-    
-    /**
      * Generates all the pieces stored in the parameter
      *
-     * @param FONNotation this string stores all the pieces on the board in
-     * a given state for example string RNBQKBNR/PPPPPPPP/8/8/8/8/pppppppp/rnbqkbnr/
-     * stores all the pieces from the start of a chess game.
+     * @param FONNotation this string stores all the pieces on the board in a
+     * given state for example string
+     * RNBQKBNR/PPPPPPPP/8/8/8/8/pppppppp/rnbqkbnr/ stores all the pieces from
+     * the start of an ordinary chess game.
      */
     public void generatePiecesAccordingToFONNotation(String FONNotation) {
         String[] parts = FONNotation.split("/");
@@ -159,7 +115,7 @@ public class Pieces {
                         King kingBlack = new King(column, (row + 1), "black");
                         pieces.put(kingBlack.getLocation(), kingBlack);
                         this.blackKing = kingBlack;
-                        break;    
+                        break;
                 }
             }
             column = 0;
@@ -192,7 +148,7 @@ public class Pieces {
     public Piece getPiece(String location) {
         return pieces.get(location);
     }
-    
+
     /**
      * Returns all the pieces stored as a HashMap
      */
@@ -231,12 +187,13 @@ public class Pieces {
 
         pieces.remove(location);
     }
-    
+
     /**
-     * Returns the piece that was that was last removed to it's original location
-     * @param location
+     * Returns the piece that was that was last removed to it's original
+     * location
+     *
      */
-    public void addPiece() {
+    public void addBackTheRemovedPiece() {
         pieces.put(removedPiece.getLocation(), removedPiece);
         removedPiece = null;
     }
@@ -244,7 +201,7 @@ public class Pieces {
     public Piece getRemovedPiece() {
         return removedPiece;
     }
-    
+
     /**
      * Erases the piece that was last removed from the game from memory
      */

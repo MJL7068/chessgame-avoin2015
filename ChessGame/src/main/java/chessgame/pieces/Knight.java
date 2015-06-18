@@ -15,8 +15,10 @@ public class Knight extends Piece {
         ImageIcon image;
         if (this.getColor().equals("white")) {
             image = new ImageIcon(getClass().getResource("/images/knightWhite.png"));
+            image.setDescription("knightWhite.png");
         } else {
             image = new ImageIcon(getClass().getResource("/images/knightBlack.png"));
+            image.setDescription("knightBlack.png");
         }
         return image;
     }

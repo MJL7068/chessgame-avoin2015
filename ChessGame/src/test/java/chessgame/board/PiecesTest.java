@@ -2,6 +2,7 @@ package chessgame.board;
 
 import chessgame.board.Pieces;
 import chessgame.pieces.Piece;
+import java.util.HashMap;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -120,14 +121,25 @@ public class PiecesTest {
     @Test
     public void removePieceWorksCorrectly() {
         pieces.removePiece("A2");
-        //White king removed
         pieces.removePiece("E2");
-        //Black king removed
         pieces.removePiece("E8");
         
         assertEquals(null, pieces.getPiece("A2"));
         assertEquals(null, pieces.getPiece("E2"));
         assertEquals(null, pieces.getPiece("E8"));
+    }
+    
+    @Test
+    public void getKingReturnsNullIfThereIsNoKing() {
+        //Black king removed
+        pieces.removePiece("E8");
+        
+        assertEquals(null, pieces.getKing("black"));
+    }
+    
+    @Test
+    public void getKingReturnsNullWithWrongParameter() {
+        assertEquals(null, pieces.getKing("orange"));
     }
     
     @Test
@@ -137,6 +149,43 @@ public class PiecesTest {
         
         pieces.move("D7", "D5");
         assertEquals("Pawn, white: D5", pieces.getPiece("D5").toString());        
+    }
+    
+    @Test
+    public void moveRemovesPieceCorrectly() {
+        pieces.move("A2", "A7");
+        assertEquals("Pawn, white: A7", pieces.getPiece("A7").toString());
+        
+        pieces.move("A7", "A6");
+        assertEquals(null, pieces.getPiece("A7"));
+    }
+    
+    @Test
+    public void getRemovedPieceWorksCorrectly() {
+        pieces.move("A2", "A8");
+        assertEquals("Rook, black: A8", pieces.getRemovedPiece().toString());
+    }
+    
+    @Test
+    public void resetRemovedPieceWorksCorrectly() {
+        pieces.move("A2", "A8");
+        assertEquals("Rook, black: A8", pieces.getRemovedPiece().toString());
+        
+        pieces.resetRemovedPiece();
+        assertEquals(null, pieces.getRemovedPiece());
+    }
+    
+    @Test
+    public void addPieceWorksCorrectly() {
+        //White piece eats the black rook
+        pieces.move("A2", "A8");       
+        pieces.move("A8", "A6");
+        assertEquals(null, pieces.getPiece("A8"));
+        
+        //Rook is returned to play
+        pieces.addBackTheRemovedPiece();
+        assertEquals("Rook, black: A8", pieces.getPiece("A8").toString());
+        assertEquals(null, pieces.getRemovedPiece());
     }
     
     @Test
@@ -150,6 +199,12 @@ public class PiecesTest {
         assertEquals("King, white: E8", oppositePieces.getPiece("E8").toString());
     }
     
-
+    @Test
+    public void getPiecesWorks() {
+        HashMap<String, Piece> allPieces = pieces.getPieces();
+        assertEquals(32, allPieces.size());
+        assertEquals("King, white: E1", allPieces.get("E1").toString());
+        assertEquals("Rook, black: H8", allPieces.get("H8").toString());
+    }
         
 }

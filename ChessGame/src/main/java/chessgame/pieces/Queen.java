@@ -15,8 +15,10 @@ public class Queen extends Piece {
         ImageIcon image;
         if (this.getColor().equals("white")) {
             image = new ImageIcon(getClass().getResource("/images/queenWhite.png"));
+            image.setDescription("queenWhite.png");
         } else {
             image = new ImageIcon(getClass().getResource("/images/queenBlack.png"));
+            image.setDescription("queenBlack.png");
         }
         return image;
     }

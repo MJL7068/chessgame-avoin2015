@@ -6,6 +6,7 @@
 package chessgame.pieces;
 
 import chessgame.board.Pieces;
+import javax.swing.ImageIcon;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -44,7 +45,9 @@ public class PawnTest {
     public void PawnCanMoveTwoStepsAtStart() {
         //Options include a square two steps away from the pawns location
         assertTrue(true == pieces.getPiece("A2").returnPossibleSquares(pieces).contains("A4"));
+        assertTrue(true == pieces.getPiece("A2").returnPossibleSquares(pieces).contains("A3"));
         
+        assertTrue(true == pieces.getPiece("H7").returnPossibleSquares(pieces).contains("H6"));
         assertTrue(true == pieces.getPiece("H7").returnPossibleSquares(pieces).contains("H5"));
     }
     
@@ -52,11 +55,18 @@ public class PawnTest {
     public void PawnMovesNormallyJustOneSquare() {
         //Pawn set one step forward before testing
         pieces.move("A2", "A3");
+        pieces.move("A7", "A6");
         
         //Options include a square one step away from the pawns location
         assertTrue(true == pieces.getPiece("A3").returnPossibleSquares(pieces).contains("A4"));
-        //Options don't include a square two steps away from pawns location
+        assertTrue(true == pieces.getPiece("A6").returnPossibleSquares(pieces).contains("A5"));
+        //Pawn can only move one step forwards, other options not avaivable
         assertTrue(false == pieces.getPiece("A3").returnPossibleSquares(pieces).contains("A5"));
+        assertTrue(false == pieces.getPiece("A3").returnPossibleSquares(pieces).contains("A2"));
+        assertTrue(false == pieces.getPiece("A3").returnPossibleSquares(pieces).contains("A1"));
+        assertTrue(false == pieces.getPiece("A6").returnPossibleSquares(pieces).contains("A4"));
+        assertTrue(false == pieces.getPiece("A6").returnPossibleSquares(pieces).contains("A7"));
+        assertTrue(false == pieces.getPiece("A6").returnPossibleSquares(pieces).contains("A8"));
     }
     
     @Test
@@ -91,7 +101,7 @@ public class PawnTest {
         //Pawn can't move on the piece in front of it
         assertTrue(false == pieces.getPiece("A7").returnPossibleSquares(pieces).contains("A6"));
         
-        //White piece moved in white pawns way
+        //White piece moved in pawns way
         pieces.move("A1", "B6");
         //Pawn can't move on the piece in front of it
         assertTrue(false == pieces.getPiece("B7").returnPossibleSquares(pieces).contains("B6"));
@@ -122,8 +132,28 @@ public class PawnTest {
     }
     
     @Test
+    public void pawnsCantMoveOverPieces() {
+        //Knight moved in front of the white pawn
+        pieces.move("B1", "A3");
+        assertTrue(false == pieces.getPiece("A2").returnPossibleSquares(pieces).contains("A4"));
+        
+        //Knight moved in front of the black pawn
+        pieces.move("G8", "H6");
+        assertTrue(false == pieces.getPiece("H7").returnPossibleSquares(pieces).contains("H5"));
+    }
+    
+    @Test
     public void returNotationWorks() {
         assertEquals("P", pieces.getPiece("A2").returnNotation());
         assertEquals("p", pieces.getPiece("A7").returnNotation());
+    }
+    
+    @Test
+    public void getImageWorks() {
+        ImageIcon whitePawnImage = pieces.getPiece("A2").getImage();
+        assertEquals("pawnWhite.png", whitePawnImage.getDescription());
+        
+        ImageIcon blackPawnImage = pieces.getPiece("E7").getImage();
+        assertEquals("pawnBlack.png", blackPawnImage.getDescription());
     }
 }

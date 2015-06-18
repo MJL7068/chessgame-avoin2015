@@ -1,6 +1,7 @@
 package chessgame.pieces;
 
 import chessgame.board.Pieces;
+import javax.swing.ImageIcon;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -97,8 +98,77 @@ public class knightTest {
     }
     
     @Test
+    public void knightRetursTheCorrectSquaresInTheCorners() {
+        //Removing pieces from the corners
+        pieces.removePiece("A1");
+        pieces.removePiece("A2");
+        pieces.removePiece("B2");
+        pieces.removePiece("C1");
+        pieces.removePiece("C2");
+        
+        pieces.removePiece("F1");
+        pieces.removePiece("F2");
+        pieces.removePiece("G1");
+        pieces.removePiece("G2");
+        pieces.removePiece("H1");
+        pieces.removePiece("H2");
+        
+        pieces.removePiece("A7");
+        pieces.removePiece("A8");
+        pieces.removePiece("B7");
+        pieces.removePiece("B8");
+        pieces.removePiece("C7");
+        pieces.removePiece("C8");
+        
+        pieces.removePiece("F7");
+        pieces.removePiece("F8");
+        pieces.removePiece("G7");
+        pieces.removePiece("G8");
+        pieces.removePiece("H7");
+        pieces.removePiece("H8");
+        
+        pieces.move("B1", "G6");
+        assertTrue(true == pieces.getPiece("G6").returnPossibleSquares(pieces).contains("H8"));
+        assertTrue(true == pieces.getPiece("G6").returnPossibleSquares(pieces).contains("H4"));
+        
+        pieces.move("G6", "G3");
+        assertTrue(true == pieces.getPiece("G3").returnPossibleSquares(pieces).contains("H1"));
+        assertTrue(true == pieces.getPiece("G3").returnPossibleSquares(pieces).contains("H5"));
+        
+        pieces.move("G3", "F7");
+        assertTrue(true == pieces.getPiece("F7").returnPossibleSquares(pieces).contains("H8"));
+        assertTrue(true == pieces.getPiece("F7").returnPossibleSquares(pieces).contains("D8"));
+        
+        pieces.move("F7", "F2");
+        assertTrue(true == pieces.getPiece("F2").returnPossibleSquares(pieces).contains("H1"));
+        
+        pieces.move("F2", "B6");
+        assertTrue(true == pieces.getPiece("B6").returnPossibleSquares(pieces).contains("A8"));
+        assertTrue(true == pieces.getPiece("B6").returnPossibleSquares(pieces).contains("A4"));
+        
+        pieces.move("B6", "B3");
+        assertTrue(true == pieces.getPiece("B3").returnPossibleSquares(pieces).contains("A1"));
+        assertTrue(true == pieces.getPiece("B3").returnPossibleSquares(pieces).contains("A5"));
+        
+        pieces.move("B3", "C7");
+        assertTrue(true == pieces.getPiece("C7").returnPossibleSquares(pieces).contains("A8"));
+        
+        pieces.move("C7", "C2");
+        assertTrue(true == pieces.getPiece("C2").returnPossibleSquares(pieces).contains("A1"));
+    }
+    
+    @Test
     public void returNotationWorks() {
         assertEquals("N", pieces.getPiece("B1").returnNotation());
         assertEquals("n", pieces.getPiece("B8").returnNotation());
+    }
+    
+    @Test
+    public void getImageWorks() {
+        ImageIcon whiteKnightImage = pieces.getPiece("B1").getImage();
+        assertEquals("knightWhite.png", whiteKnightImage.getDescription());
+        
+        ImageIcon blackKnightImage = pieces.getPiece("B8").getImage();
+        assertEquals("knightBlack.png", blackKnightImage.getDescription());
     }
 }

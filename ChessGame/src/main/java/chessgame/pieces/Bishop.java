@@ -25,8 +25,10 @@ public class Bishop extends Piece {
         ImageIcon image;
         if (this.getColor().equals("white")) {
             image = new ImageIcon(getClass().getResource("/images/bishopWhite.png"));
+            image.setDescription("bishopWhite.png");
         } else {
             image = new ImageIcon(getClass().getResource("/images/bishopBlack.png"));
+            image.setDescription("bishopBlack.png");
         }
         return image;
     }

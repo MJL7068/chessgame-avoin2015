@@ -59,3 +59,9 @@ n. 6 tuntia. Nyt ohjelma pystyy tallentamaan pelitilanteen Stringinä tekstitied
 
 15.6 2015
 n. 1 tunti. Viimeistelin ohjelmaa demoa varten.
+
+17.6 2015
+n. 5 tuntia. Viimeistelin ohjelmaa ja kirjoitin testejä.
+
+18.6 2015
+n. 5 tuntia. Tein Javadocin, Checkstylen, testausdokumentin ja viimeistelin testit ja ohjelman. Palautin myös jar-tiedoston.
